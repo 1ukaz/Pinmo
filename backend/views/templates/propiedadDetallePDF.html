@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{literal}
+<style type="text/css">
+body {
+	font-family: Arial;
+	margin: 0;
+	padding: 0;
+}
+h4 {
+	text-align:center;
+	margin-top:5px;
+}
+table {
+	width: 100%;
+}
+#contenedor_principal {
+	width:100%;
+	padding:5px;
+}
+#contenedor_datos {
+	margin-bottom:5px;
+	width:100%;
+	height:300px;
+}
+#contenedor_datos ul {
+	margin:5px;
+	padding:0px;
+}
+#contenedor_datos #itemspropiedad {
+	width: 100%;
+	border: none;
+}
+#contenedor_datos #itemspropiedad td {
+	width:33%;
+}
+#contenedor_datos #medidas {
+	width: 100%;
+}
+#contenedor_datos #medidas td { 
+	width:25%;
+}
+#contenedor_datos h3 {
+	font-weight:bold;
+}
+#contenedor_fotos {
+	width:212mm;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+#contenedor_fotos img {
+	width: 100mm;
+	height: 100mm;
+}
+#encabezado {
+	width:100%;
+	background-color:#CCCCCC;
+	font-size: 16px;
+}
+#encabezado table td {
+	
+}
+
+#encabezado #ubicacion {
+	width:40%;	
+}
+
+#encabezado #logotd {
+	width:30%;
+}
+
+#encabezado #logotd img{
+	width:170px;	
+}
+
+#encabezado #precio {
+	width:30%;	
+	background-color:#FF0000;
+	text-align:center;
+	vertical-align:middle;
+	font-weight:bold;
+}
+#encabezado #disposicion {
+	width:60%;
+	height:20px;
+}
+#encabezado #tipo_publicacion {
+	width:20%;
+	height:20px;
+	background-color:#666666;
+	text-align:center;
+	color:#F9F9F9;
+}
+#contenedor_principal #footer {
+	width:100%;
+	background-color:#CCCCCC;
+	text-align:center;
+}
+
+
+.lineBreaker {
+	page-break-after:always;		
+}
+</style>
+{/literal}
+</head>
+<body>
+{assign var = tplPublicacionesInvalidas value = ''}
+{foreach name=publicaciones item=aPublicacion from=$tplProp->getPublicaciones()}
+{if $aPublicacion->getIdEstadoPublicacion() eq 1}
+<div id="contenedor_principal">
+
+  <div id="encabezado">
+    <table cellspacing="1">
+      <tr>
+        <td id="ubicacion">
+        	<strong>{$tplProp->getDomicilio()}</strong><br>
+            {if $tplProp->ubicacion->getEntreCalle1() and $tplProp->ubicacion->getEntreCalle2()}
+            	{$tplProp->ubicacion->getEntreCalle1()} y {$tplProp->ubicacion->getEntreCalle2()}<br>
+            {elseif $tplProp->ubicacion->getEntreCalle1() or $tplProp->ubicacion->getEntreCalle2()}
+            	Esq. {$tplProp->ubicacion->getEntreCalle1()} {$tplProp->ubicacion->getEntreCalle2()}<br>
+            {/if}                
+          	{$tplProp->ubicacion->getNomLocalidad()}
+        </td>
+        <td id="logotd">
+        	{if $tplInmobiliaria->getLogoPath()}
+                <img src="http://www.pinmo.com.ar/{$tplInmobiliaria->getLogoPath()}"></img>
+        	{else}
+                &nbsp;	
+        	{/if}
+        </td> 
+        <td id="precio">
+            {if is_numeric($aPublicacion->getMonto(1))}
+                {$aPublicacion->getMoneda()}
+            {/if}
+            {$aPublicacion->getMonto(0)}        
+      	</td>
+      </tr>
+      
+      <tr>
+        <td id="disposicion">
+			{foreach name=itemsPDF item=itemPDF from=$tplProp->getItems()}
+        		{if $itemPDF->getEstado() and $itemPDF->getAgrupamiento() eq "Disposicion"}
+            		{$itemPDF->getDescripcion()}
+            	{/if}
+			{/foreach}
+        </td> 
+        <td>&nbsp;</td>         
+        <td id="tipo_publicacion">
+            {$aPublicacion->getTipoPublicacion()|truncate:14:".":true}
+        </td> 
+      </tr>        
+    </table>
+    </div>
+    
+    <div id="contenedor_datos">
+        {if $tplProp->getItems()}
+            <h4>Características Generales</h4>
+        	<ul>
+            <table border="0" cellspacing="0" id="itemspropiedad">
+            <tr>
+            {assign var = tplCounter value = 0}
+            {foreach name=itemsPDF item=itemPDF from=$tplProp->getItems()}
+            	<td><li>{$itemPDF->getDescripcion()}</li></td>
+                {assign var = tplCounter value = $tplCounter+1}
+                {if $tplCounter % 3 == 0}
+                	</tr><tr>
+                {/if}
+            {/foreach}
+            </tr>
+            </table>
+            </ul>
+        {/if}
+        <br />
+        {if $tplProp->getAmbientes()}
+            <h4>Detalle de Ambientes</h4>
+            <table border="1" cellspacing="0" id="medidas">
+            	<tr>
+            	{foreach name=roomsPDF item=roomPDF from=$tplProp->getAmbientes()}
+                	<td>{$roomPDF->getDescripcion()}</td><td>{$roomPDF->getAncho()} x {$roomPDF->getLargo()} metros</td>
+            		{if $smarty.foreach.roomsPDF.iteration % 2 == 0}
+                		</tr><tr>
+            		{else}
+                    	{if $smarty.foreach.roomsPDF.iteration eq count($tplProp->getAmbientes())}
+                        	<td colspan="2">&nbsp;</td>
+                        {/if}
+                    {/if}
+            	{/foreach}
+                </tr>
+            </table>
+        {/if} 
+        <br />   
+        
+        <table border="0" cellspacing="0" >
+        <tr>       
+		{if $tplProp->getSuperficieTotal() neq 0 or $tplProp->getSuperficieCubierta() neq 0 or $tplProp->getSuperficieDesCubierta() neq 0}								
+                {if $tplProp->getSuperficieTotal() neq 0}
+                    <td><strong> Superficie Total: </strong>{$tplProp->getSuperficieTotal()} m2 </td>
+                {/if}
+                {if $tplProp->getSuperficieCubierta() neq 0}
+                    <td><strong> Superficie Cubierta: </strong>{$tplProp->getSuperficieCubierta()} m2 </td>
+                {/if}
+                {if $tplProp->getSuperficieDesCubierta() neq 0}
+                    <td><strong> Superficie Descubierta: </strong>{$tplProp->getSuperficieDesCubierta()} m2 </td>             
+                {/if}
+	        </div>	        
+        {/if}   
+		</tr>
+		
+		<tr>
+        {if $tplProp->getExpensas() neq 0 or $tplProp->getExpensasExtraordinarias() neq 0 }	        
+                {if $tplProp->getExpensas() neq 0}
+                    <td><strong> Expensas Ordinarias: </strong>$ {$tplProp->getExpensas()} </td>                 
+                {/if}
+                {if $tplProp->getExpensasExtraordinarias() neq 0}
+                    <td><strong> Expensas Extraordinarias: </strong>$ {$tplProp->getExpensasExtraordinarias()}</td>                    
+                {/if}
+	    {/if}	         
+        </tr>
+        </table>            
+    </div>
+    
+    <br /> 
+    <div id="contenedor_fotos">
+    {if $tplProp->getImagenes()}
+        {if count($tplProp->getImagenes()) gt 1}  
+            {section name = imagenes start = 0 loop = 2  step = 1}
+                <img src="{$tplProp->aImagenes[$smarty.section.imagenes.index]->getImgFullPath()}" />
+            {/section}                 
+        {else}
+            <img src="{$tplProp->aImagenes[0]->getImgFullPath()}" />                                 
+        {/if}
+    {else}
+    	<img src="http://www.pinmo.com.ar/pictures/no-image.png" />
+    {/if}
+    </div>
+    
+    <div id="footer"> 
+   		<strong>Más Información:</strong> http://{$tplInmobiliaria->getDominio()}
+		{if $tplProp->getCodigoReferencia() neq ""}
+			- <strong> Código de Referencia:</strong> &nbsp; {$tplProp->getCodigoReferencia()} 
+		{/if}
+        <br />
+        {$tplInmobiliaria->ubicacion->getCalle()} {$tplInmobiliaria->ubicacion->getNumero()} - 
+        {$tplInmobiliaria->ubicacion->getNomProvincia()} &middot; {$tplInmobiliaria->ubicacion->getNomLocalidad()}
+        ({$tplInmobiliaria->ubicacion->getCPA()})
+        <br />
+        {$tplInmobiliaria->getTelefono()}
+    </div>
+    
+</div>
+<br class="lineBreaker" />
+{else}
+	{assign var="tplPublicacionesInvalidas" value="`$tplPublicacionesInvalidas+1`"}
+{/if}
+{/foreach}
+{if $tplPublicacionesInvalidas eq 3}
+	<center><h2>La Propiedad NO tiene ninguna Publicacion ACTIVA</h2></center>
+{/if}
+</body>
+</html>
+

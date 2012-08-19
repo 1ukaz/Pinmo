@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !css/
+RewriteCond %{REQUEST_URI} !js/
+RewriteCond %{REQUEST_URI} !pictures/
+RewriteCond %{REQUEST_URI} !backend/
+RewriteCond %{REQUEST_URI} !panel/
+RewriteCond %{REQUEST_URI} !frontend/depinera/images/
+RewriteRule (.*) ./frontend/Home/controllers/$1

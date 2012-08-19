@@ -1,0 +1,65 @@
+/* CSS Document */
+
+@import "../UI-Panel/jquery-ui.css";
+
+body { 	
+	font: 75% "Trebuchet MS", sans-serif; background-repeat:repeat; width:100%; height:100%; overflow-x:hidden;
+	background-image: url('../UI-Panel/images/ui-bg_diagonals-super-thick_8_000000_120x120.png');
+}
+
+.theButton { 
+	padding:.5em 1em .5em 20px; text-decoration:none; position:relative; cursor:pointer; outline: 0; 
+}
+
+.theButton > span.ui-icon { 
+	margin:0 5px 0 0; position:absolute; left:.2em; top:50%; margin-top:-8px; 
+}
+
+.filaCampo { 
+	padding: 2px; height: 40px; 
+}
+
+.etiqueta { 
+	width: 35%;	float: left; text-align:right; padding-top:5px; 
+}
+
+.campo { 
+	width: 65%; float: right; text-align:left; height:30px; 
+}
+
+input { 
+	border:1px #888 solid; width:175px; padding:5px 0px 5px 5px; 
+}
+
+#login { 
+	background-image: url('../UI-Panel/images/ui-bg_fine-grain_15_ffffff_60x60.png'); position:absolute; left:50%; margin-top:90px;
+	margin-left:-200px; width:400px; height:300px; background-color:#F9F9F9; color:#444444; padding:25px; text-align:left; 	
+	box-shadow: 5px 5px 5px #222; -moz-box-shadow: 5px 5px 5px #222; -webkit-box-shadow: 5px 5px 5px #222; 
+	filter: progid:DXImageTransform.Microsoft.Shadow(color=#222222,direction=135);
+}
+
+div#titulo { 
+	line-height:75px; color:#444444; font-size:25px; margin-bottom:5px; text-align:right; padding:0px 20px;
+	border: 1px solid #00688F; background:#FFF url('../images/gen/logopinmo_small.png') no-repeat 5% 55%; 
+}
+		 
+#toolTip {  
+	background:url('../images/panel/shadow2.png') no-repeat 0 0; position:absolute; padding-top:85px; height:160px; width:350px;
+	font:"Courier New", Courier, monospace; font-size:13px; font-weight:bold; color:#000000; text-align:center; 
+}
+
+noscript {
+	position:absolute; width:98.8%;
+}
+
+.noscript-container {
+	padding:0px 0px 15px 20px; text-align:center;	
+}
+
+.noscript-alert {
+	background:url('../../css/images/gen/Kalert.png') no-repeat top left; height:50px;	
+}
+
+.noscript-alert p {
+	padding:10px 0px 0px;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<flash_parameters copyright="socusoftFSMTheme">
+    <preferences>
+        <global>
+            <basic_property movieWidth="480" movieHeight="360" startAutoPlay="true" backgroundColor="0xf5f5f4" continuum="true" html_title="Intro" loadStyle="Bar" socusoftMenu="false" hideAdobeMenu="true" photoDynamicShow="true" enableURL="true" transitionArray=""/>
+            <title_property photoTitle="false" photoTitleX="5" photoTitleY="25" photoTitleSize="20" photoTitleFont="Verdana" photoTitleColor="0xffffff"/>
+            <music_property path="" stream="true" loop="true"/>
+            <photo_property topPadding="0" bottomPadding="0" leftPadding="0" rightPadding="0"/>
+            <properties enable="false" backgroundColor="0xffffff" backgroundAlpha="30" cssText="a:link{text-decoration: underline;} a:hover{color:#ff0000; text-decoration: none;} a:active{color:#0000ff;text-decoration: none;} .blue {color:#0000ff; font-size:15px; font-style:italic; text-decoration: underline;} .body{color:#ff5500;font-size:20px;}" align="top"/>
+        </global>
+        <control>
+            <basic_property showControl="false" showControlX="-30" showControlY="460" showPreviousButton="res/previous01.gif" showPreviousButtonX="50" showStopButton="res/stop01.gif" showStopButtonX="97" showPlayButton="res/play01.gif" showPlayButtonX="97" showNextButton="res/next01.gif" showNextButtonX="124" showSoundButtonX="182"/>
+        </control>
+    </preferences>
+    <album>
+        <slide jpegURL="thumbs/ti_0001.jpg" d_URL="slides/i_0001.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="1" width="480" height="360"/>
+        <slide jpegURL="thumbs/ti_0002.jpg" d_URL="slides/i_0002.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="2" width="480" height="360"/>
+        <slide jpegURL="thumbs/ti_0003.jpg" d_URL="slides/i_0003.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="3" width="480" height="360"/>
+        <slide jpegURL="thumbs/ti_0004.jpg" d_URL="slides/i_0004.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="4" width="480" height="360"/>
+        <slide jpegURL="thumbs/ti_0005.jpg" d_URL="slides/i_0005.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="5" width="480" height="360"/>
+        <slide jpegURL="thumbs/ti_0006.jpg" d_URL="slides/i_0006.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="6" width="480" height="360"/>
+        <slide jpegURL="thumbs/ti_0007.jpg" d_URL="slides/i_0007.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="7" width="480" height="360"/>
+    </album>
+</flash_parameters>

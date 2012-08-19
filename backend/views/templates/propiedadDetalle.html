@@ -1,0 +1,102 @@
+{literal}
+<script type="text/javascript">
+	SexyLightbox.refresh();
+</script>
+{/literal}
+<div id="contenedorDetalle">
+    <div id="panelInfoGral">
+        <h4>INFORMACI&Oacute;N GENERAL</h4>
+        <ul class="details">
+        
+            {if $tplProp->getCodigoReferencia() neq ''}
+                <li><strong>Ref.: </strong>{$tplProp->getCodigoReferencia()}</li>
+            {/if}
+            
+            {if $tplProp->getTipoPropiedad() neq ''}
+                <li><strong>Tipo: </strong>{$tplProp->getTipoPropiedad()}</li>
+            {/if}
+        
+            {if $tplProp->ubicacion->getCalle() neq ''}
+                <li><strong>Domicilio: </strong>{$tplProp->ubicacion->getCalle()} al {$tplProp->ubicacion->getNumero(1)}</li>
+            {/if}
+            
+            {if $tplProp->ubicacion->getNomLocalidad() neq ''}
+                <li><strong>Localidad: </strong> {$tplProp->ubicacion->getNomLocalidad()}</li>
+            {/if}
+        
+            {if $tplProp->ubicacion->getNomProvincia() neq ''}
+                <li><strong>Provincia: </strong>{$tplProp->ubicacion->getNomProvincia()}</li>
+            {/if}
+                
+            {if $tplProp->ubicacion->getPiso() neq ''}
+                <li><strong>Piso: </strong>{$tplProp->ubicacion->getPiso(1)}</li>
+            {/if}
+        
+            {if $tplProp->ubicacion->getEntreCalle1() neq '' && $tplProp->ubicacion->getEntreCalle2() neq ''}
+                <li><strong>Entre calles: </strong>{$tplProp->ubicacion->getEntreCalle1()} y {$tplProp->ubicacion->getEntreCalle2()}</li>
+            {/if}
+            
+            {if $tplProp->getCantAmbientes() gt 0}
+                <li><strong>Ambientes: </strong>{$tplProp->getCantAmbientes()}</li>
+            {/if}
+            
+            {if $tplProp->getAntiguedad() neq ''}
+                {if $tplProp->getAntiguedad() != 'A Estrenar'}
+                    <li><strong>Antiguedad: </strong>{$tplProp->getAntiguedad()} A&ntilde;os</li>
+                {else}
+                    <li><strong>Antiguedad: </strong>{$tplProp->getAntiguedad()}</li>
+                {/if}
+            {/if}
+            
+            {if $tplProp->getSuperficieCubierta() gt 0}
+                <li><strong>Superficie Cubierta: </strong>{$tplProp->getSuperficieCubierta()} M2</li>
+            {/if}
+        
+            {if $tplProp->getSuperficieTotal() gt 0}
+                <li><strong>Superficie Total: </strong>{$tplProp->getSuperficieTotal()} M2</li>
+            {/if}
+        
+        </ul>
+    </div>
+    
+	<div id="panelCaracter">	    
+		<h4>CARACTERISTICAS</h4>
+        {if $tplProp->getItems()}
+            <ul class="details">
+            {foreach name=items item=item from=$tplProp->getItems()}
+            	<li>{$item->getDescripcion()}</li>
+            {/foreach}
+            </ul>
+    	{/if}
+    </div>
+    
+	<div id="panelMedidas">
+		<h4>MEDIDAS DE LOS AMBIENTES</h4>
+        {if $tplProp->getAmbientes()}
+            <ul class="details">
+            {foreach name=rooms item=room from=$tplProp->getAmbientes()}
+                <li>{$room->getDescripcion()}: {$room->getAncho()} x {$room->getLargo()} metros</li>
+            {/foreach}
+            </ul>
+        {/if}
+    </div>  
+         
+	<div id="panelGaleria">
+		<h4>GALER&Iacute;A</h4>
+        {if $tplProp->getImagenes()}
+            {foreach name=images item=image from=$tplProp->getImagenes()}
+                <a href="{$image->getImgFullPath()}" rel="lb[p_{$image->getIdPropiedad()}]" title="{$image->getDescripcion()}" alt="{$image->getDescripcion()}">
+                    <img id="thb_{$image->getIdImagen()}" class="galleryThumb" src="{$image->getThumbFullPath()}" />
+                </a>
+            {/foreach}
+     	{/if} 
+     </div>
+    
+	<div id="panelObvserv">	
+        <h4>OBSERVACIONES</h4>
+        {if $tplProp->getObservaciones() neq ''}
+            <p>{$tplProp->getObservaciones()|wordwrap}</p>
+        {/if}
+	</div>            	
+
+</div><!-- Fin contenedorDetalle -->

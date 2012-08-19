@@ -1,0 +1,148 @@
+﻿{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+	var cont = 0;
+	$(".stateLoading").hide();
+	$(".toolTip").tooltip({track:true, delay:500, showURL:false, fade:200});
+});
+</script>
+{/literal}
+{if count($tplSearchObject->getListado()) gt 0}
+	<table id="resultadosPropios" class="tablaListado" border="0" cellspacing="0" cellpadding="0">
+    	<thead>
+		<tr class="tableHeader">
+			<th width="5%">Imagen</th>
+			<th width="10%"><a class="orderLink toolTip" href="./buscadorPropio.php?acc=search&o=4&p={$tplSearchObject->oPaginador->getPage()}&idf=frmBusquedaPropia&idr=searchResultsPropio" title="Haciendo Click Ordena Los Resultados por Zona"><span class="ui-icon ui-icon-carat-1-s"></span>Zona</a></th>
+			<th width="25%"><a class="orderLink toolTip" href="./buscadorPropio.php?acc=search&o=5&p={$tplSearchObject->oPaginador->getPage()}&idf=frmBusquedaPropia&idr=searchResultsPropio" title="Haciendo Click Ordena Los Resultados por Domicilio"><span class="ui-icon ui-icon-carat-1-s"></span>Domicilio</a></th>
+			<th>Publicaci&oacute;n</th>
+			<th width="10%"><a class="orderLink toolTip" href="./buscadorPropio.php?acc=search&o=6&p={$tplSearchObject->oPaginador->getPage()}&idf=frmBusquedaPropia&idr=searchResultsPropio" title="Haciendo Click Ordena Los Resultados por Estado"><span class="ui-icon ui-icon-carat-1-s"></span>Estado</a></th>
+			<th width="22%">Acci&oacute;nes</th>
+		</tr>
+        </thead>
+        <tbody>
+        <tr class="sepa"><td colspan="6"></td></tr>
+		{section name=item loop=$tplSearchObject->getListado()}
+        {assign var = tplCalendarFlag value = 0}
+		<tr id="Row_{$smarty.section.item.index}" class="{cycle name="outerCycle" values="pairRow,unpairRow"}">
+			<td align="center">
+            	{if count($tplSearchObject->aListado[item]->getImagenes()) gt 0}
+                	<a href="./propiedadDeta.php?i={$smarty.section.item.index}&acc=ve&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()}&tittle=Detalles_de_la_Propiedad" class="accLink">
+                		<img src="{$tplSearchObject->aListado[item]->aImagenes[0]->getThumbFullPath()}" class="listedThumb toolTip" title="Haga Click para Ver los Detalles de La Propiedad" />
+                	</a>
+                {else}
+                	<img src="../../pictures/no-image.png" class="listedThumb" />
+                {/if}
+            </td>
+			<td>{$tplSearchObject->aListado[item]->ubicacion->getNomLocalidad()}</td>
+			<td>
+            	{$tplSearchObject->aListado[item]->ubicacion->getCalle()} 
+            	{$tplSearchObject->aListado[item]->ubicacion->getNumero()} 
+                {$tplSearchObject->aListado[item]->ubicacion->getPiso()} 
+                {$tplSearchObject->aListado[item]->ubicacion->getDepartamento()}
+            </td>
+			<td>
+            	{if count($tplSearchObject->aListado[item]->getPublicaciones()) gt 0}
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="innerTable">
+                	<tbody>
+                    {section name=publicacion loop=$tplSearchObject->aListado[item]->getPublicaciones()}
+                    <tr>
+                        <td width="55%"><strong>{$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true}</strong>:</td>
+                        {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdTipoPublicacion() eq 3 && is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto(1))}
+                            {assign var = tplCalendarFlag value = 1}
+                        {/if}
+                        <td width="35%">
+                        {if is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto(1))}
+                            {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMoneda()}
+                        {/if}
+                        {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto(1)}
+                        </td>
+                        <td width="10%">
+                        {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 1}
+                            <span class="ui-icon-uncheck ui-icon-notice toolTip" title="Estado: {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getEstadoPublicacion()}"></span>
+                        {else}
+                            <span class="ui-icon-ok ui-icon-check toolTip" title="Estado: {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getEstadoPublicacion()}"></span>
+                        {/if}
+                        </td>
+                    </tr>
+                    {/section}
+                 	</tbody>
+                </table>
+                {/if}
+            </td>
+			<td id="zonaEstadoPublicacion_{$smarty.section.item.index}">
+              {if $tplSearchObject->aListado[item]->getIdUsuario() eq $tplLoggedUsrId}
+            	{if $tplSearchObject->aListado[item]->getEstadoPublicacion() eq 5}
+                	<a id="stateLink_{$smarty.section.item.index}" href="./propiedadEdit.php?idz={$smarty.section.item.index}&acc=st&es=1" class="stateLink">
+                    	<img src="../../css/images/panel/Kcancel.png" class="toolTip" title="Haga Click para Publicar La Propiedad" />
+                    </a>
+                {else}
+                 	<a id="stateLink_{$smarty.section.item.index}" href="./propiedadEdit.php?idz={$smarty.section.item.index}&acc=st&es=5" class="stateLink">
+                    	<img src="../../css/images/panel/Kok.png" class="toolTip" title="Haga Click para Archivar La Propiedad" />
+                    </a>               
+                {/if}
+				<img src="../../css/images/gen/ajax-loader-small.gif" class="stateLoading" id="stateLoading_{$smarty.section.item.index}" />
+              {else}
+            	{if $tplSearchObject->aListado[item]->getEstadoPublicacion() eq 5}
+                    <img src="../../css/images/panel/Kcancel.png" class="toolTip" title="Propiedad Archivada" />
+                {else}
+                    <img src="../../css/images/panel/Kok.png" class="toolTip" title="Propiedad Publicada" />
+                {/if}             
+              {/if}
+            </td>
+			<td>
+            	{if $tplSearchObject->aListado[item]->getIdUsuario() eq $tplLoggedUsrId}
+                    <a href="./propiedadEdit.php?i={$smarty.section.item.index}&acc=ed&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()}&tittle=Modificacion_de_la_Propiedad" class="accLink">
+                        <img src="../../css/images/panel/Kedit-1.png" class="toolTip" title="Haga Click para Editar los Datos de La Propiedad" />
+                    </a>
+                    {if $tplCalendarFlag eq 1}
+                        <a href="./propiedadDisp.php?i={$smarty.section.item.index}&acc=ld&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()}&tittle=Disponibilidad_de_la_Propiedad" class="accLink">
+                            <img src="../../css/images/panel/Kcalendar-2.png" class="toolTip" title="Haga Click para Administrar la Disponibilidad de La Propiedad" />
+                        </a>
+                    {/if}
+                    <a href="./propiedadPict.php?i={$smarty.section.item.index}&acc=fo&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()}&tittle=Imagenes_de_la_Propiedad" class="accLink">
+                        <img src="../../css/images/panel/Kfotos-4.png" class="toolTip" title="Haga Click para Administrar las Imagenes de La Propiedad" />
+                    </a>
+                    <a href="./propiedadEdit.php?i={$smarty.section.item.index}&acc=de&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()}" class="accLink">
+                    	<img src="../../css/images/panel/Kdelete.png" title="Haga Click para Eliminar La Propiedad" class="toolTip" />
+                    </a>
+                {/if}  
+                <a href="./propiedadDeta.php?i={$smarty.section.item.index}&acc=ve&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()}&tittle=Detalles_de_la_Propiedad" class="accLink">
+                	<img src="../../css/images/panel/Kdetails.png" class="toolTip" title="Haga Click para Ver los Detalles de La Propiedad" />
+                </a>
+				<a href="./propiedadDeta.php?i={$smarty.section.item.index}&acc=pd">
+    				<img src="../../css/images/panel/pdf-2.png" class="toolTip" title="Haga Click para Guardar La Propiedad Como Archivo PDF" />
+    			</a>                			            
+            </td>
+		</tr>
+        <tr class="sepa"><td colspan="6"></td></tr>
+		{/section}
+        </tbody>
+	</table><br/ ><br /> 
+	{if $tplSearchObject->oPaginador->getEstado() eq 1}
+		<table width="100%" border="0" class="paginador" align="center">
+        	<tbody>
+			<tr> 
+				<td width="20%" align="center">Hasta {$tplSearchObject->oPaginador->getLimit()} Registros por P&aacute;gina</td>
+				<td width="70%" align="left" style="padding-left:20%;">Total de Registros en la Base de Datos: {$tplSearchObject->oPaginador->getTotalRows()}</td>
+				<td width="10%" align="center">P&aacute;gina {$tplSearchObject->oPaginador->getPage()} de {$tplSearchObject->oPaginador->getNumPages()}</td>
+			</tr>
+			<tr><td colspan='3'>&nbsp;</td></tr>
+			<tr> 
+				<td colspan='3' align="center">Ir a p&aacute;gina 
+					<select name="comboPag" id="comboPag" class="pagCombo" onChange="changePaginatorPage('./buscadorPropio.php?acc=search&idf=frmBusquedaPropia&idr=searchResultsPropio&o={$tplOrden}');">
+						{html_options values=$tplPaginatorCombo.values selected=$tplSearchObject->oPaginador->getPage() output=$tplPaginatorCombo.output}
+					</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./buscadorPropio.php?acc=search&o={$tplOrden}&p=1&idf=frmBusquedaPropia&idr=searchResultsPropio" class="pagLink">Primera</a> |
+					{if $tplSearchObject->oPaginador->getPage()-1 gt 0}
+						<a href="./buscadorPropio.php?acc=search&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()-1}&idf=frmBusquedaPropia&idr=searchResultsPropio" class="pagLink">Anterior</a> | 
+					{/if}
+					{if $tplSearchObject->oPaginador->getPage()+1 lte $tplSearchObject->oPaginador->getNumPages()}
+						<a href="./buscadorPropio.php?acc=search&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()+1}&idf=frmBusquedaPropia&idr=searchResultsPropio" class="pagLink">Siguiente</a> | 
+					{/if}
+					<a href="./buscadorPropio.php?acc=search&o={$tplOrden}&p={$tplSearchObject->oPaginador->getNumPages()}&idf=frmBusquedaPropia&idr=searchResultsPropio" class="pagLink">Ultima</a>
+				</td>
+			</tr>
+        </tbody>
+		</table>
+	{/if} 
+{/if}

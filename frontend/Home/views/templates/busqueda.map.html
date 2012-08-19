@@ -1,0 +1,31 @@
+{literal}
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	var customIcons = {
+		departamento: {
+			icon: 'css/images/markers/depto2bw-i.png',
+			shadow: 'css/images/markers/depto-s.png'
+		},
+		casa: {
+			icon: 'css/images/markers/casa2-i.png',
+			shadow: 'css/images/markers/casa-s.png'
+		},
+		ph: {
+			icon: 'css/images/markers/ph2-i.png',
+			shadow: 'css/images/markers/ph-s.png'
+		},
+		local: {
+			icon: 'css/images/markers/local-i.png',
+			shadow: 'css/images/markers/local-s.png'
+		}
+	};
+	Map.showMultiMap("mapCanvas", customIcons, queryString);
+});
+//]]>
+</script>
+{/literal}
+<center>
+    <p style="padding-right:20px; text-align:right;"><a href="javascript:void(0)" class="lm" id="mapCloser">Cerrar Mapa</a></p>
+    <div id="mapCanvas"></div>
+</center>

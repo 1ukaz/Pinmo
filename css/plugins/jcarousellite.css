@@ -1,0 +1,59 @@
+/* CSS Document */
+
+#jCarouselLite .carousel  {
+    padding: 10px 0 0 0;
+    margin: 0 0 20px 0px;
+    position: relative;     
+}
+    #jCarouselLite .carousel button { /*Don't remove this. we still use this for individual demos. only the front pages use images as of now*/
+        float: left;
+    }              
+    #jCarouselLite .carousel a.prev, #jCarouselLite .carousel a.next {
+        display: block;
+        float: left;
+        width: 32px;
+        height: 132px;
+        text-decoration: none;
+        background: #f0f0f0 url("../images/carroussel/imageNavLeft.gif") 7px 60px no-repeat;
+		border-top:1px solid #CCCCCC;
+		border-bottom:1px solid #CCCCCC;		
+    }
+        #jCarouselLite .carousel a.next {
+            background: #f0f0f0 url("../images/carroussel/imageNavRight.gif") 0px 60px no-repeat;
+			border-right:1px solid #CCCCCC;
+        }
+        #jCarouselLite .carousel a.prev {
+			border-left:1px solid #CCCCCC;
+        }
+            #jCarouselLite .carousel a.next:hover {
+                background-image: url("../images/carroussel/imageNavRightHover.gif");
+            }
+            #jCarouselLite .carousel a.prev:hover {
+                background-image: url("../images/carroussel/imageNavLeftHover.gif");
+            }    
+            #jCarouselLite .carousel a:hover, #jCarouselLite .carousel a:active {
+                outline: none;
+            }                 
+    #jCarouselLite .carousel .jCarouselLite {
+        float: left;
+        background-color: #f0f0f0;
+		border-top:1px solid #CCCCCC;
+		border-bottom:1px solid #CCCCCC;
+        
+        /* Needed for rendering without flicker */
+        position: relative;
+        visibility: hidden;
+        left: -5000px;
+    }
+        #jCarouselLite .carousel ul {
+            margin: 0;
+        }
+        #jCarouselLite .carousel li img, 
+        #jCarouselLite .carousel li p {
+            background-color: #fff;
+            width: 99px;
+            height: 99px;
+            margin: 10px;
+			border: 5px double #9D151A;
+        }
+        

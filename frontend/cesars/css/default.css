@@ -1,0 +1,571 @@
+@charset "utf-8";
+
+/*general*/
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+	padding:0px;
+	background-color: #f5f5f4;
+	font-family:"Trebuchet MS";
+}
+
+a,select, input, label,div,ul{
+	font-size: 12px;
+	margin:0px;
+	padding:0px;
+	font-family:"Trebuchet MS";
+}
+
+p{
+	font-size: 12px;
+	margin:0px;
+	padding:0px 0px 10px 0px;
+}
+
+ul{
+	margin: 0px;
+	padding: 0px;
+	/*color:#333333;*/
+}
+
+
+input.inputText{
+	width:100px;
+	background-color:#CCCCC0;
+	font-family:"Trebuchet MS";
+}
+
+select.combo{
+	width:155px;
+	color: #333333;
+	font-size: 12px;
+	vertical-align:top;
+}
+
+
+/*capa principal*/
+div#page{
+	width:1024px;
+	padding:10px;
+	background-color:#f5f5f4;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	/*width:800px;*/	
+}
+
+
+/*capa header*/
+
+#header{
+	float:left;
+	clear:both;
+	width:1024px;
+	/*background-color:#D56D00;*/
+	background-color:#f5f5f4;
+	/*border-bottom:#FF0000 solid 3px;*/
+
+	border-top: solid 2px;
+	border-left: solid 2px;
+	border-right: solid 2px;
+	border-color: red;	
+	
+}
+
+#header_left {
+	width:300px;
+	clear:none;
+	float:left;
+}
+
+#header_left img{
+
+}
+
+#header_right{
+	width:600px;
+	height:100px;
+	clear:none;
+	float:right;
+	text-align:right;
+	/*background-image: url(../imagenes/header_right.png);*/
+	
+}
+
+#header #barra_idioma{
+height:20px;
+line-height:20px;
+padding: 3px;
+}
+
+
+
+#header #barra_idioma img{
+	vertical-align:top;
+}
+
+
+/*menu de navegacion*/
+#menu {
+	
+	float: left;
+	padding-left: 1px;
+}
+
+#menu li {
+	float:left;
+	clear:none;
+	list-style-type:none;
+	cursor:pointer;
+}
+
+#menu li {
+	display: block;
+	clear:none;
+	height: 32px;
+	line-height:32px;
+	text-align:center;
+	width: 110px;
+	border: none;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+	background: url('../imagenes/boton.png') no-repeat;
+	padding-bottom:1px;
+	border:1px solid #666666;
+}
+
+#menu li:hover {
+	background: url('../imagenes/botonseleccionado.png') top no-repeat;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+
+
+/*contenido*/
+div#content{
+	width:1024px;
+	clear:both;
+	float:left;
+
+}
+
+/*panel superior*/
+div#toppanel{
+	clear:both;
+	width:1024px;
+	height:36px;
+	border-left: solid 2px;
+	border-right: solid 2px;
+	border-bottom: solid 2px;
+	border-color:red;
+	
+}
+
+div#toppanel img{
+float:right;
+height:36px;
+width: 462px;
+padding-bottom: 1px;
+}
+
+div#mainpanel{
+	float: left;
+	clear:none;
+	width:1024px;
+	margin-top:10px;
+}
+
+/*seccion inicial*/
+div#mainpanel #texto_inicio {
+	width:55%;
+	clear:none;
+	float:left;
+	padding-top:15px;
+}
+
+div#mainpanel #texto_inicio p{
+	font-size:14px;
+	font-weight: bold;
+	line-height: 2em;
+}
+
+
+div#mainpanel #imagen_inicio{
+	clear:none;
+	float:right;
+	margin-top: 20px;
+	padding: 2px;
+	border: 1px solid #CCCCC0;
+}
+
+/*sección conctato*/
+div#contacto #texto{
+	font-size:14px;
+	width:300px;
+	float:left;
+}
+
+div#contacto #texto2{
+	padding-left:100px;
+	padding-top:50px;
+	float:left;
+}
+
+/*buscador de propiedades*/
+
+#buscador{
+	background-color:#CCCCCC;
+	
+	font-size:12px;
+	font-weight:bold;
+	margin: 0px;
+	clear:both;
+	border:2px solid;
+	border-color:#666666;
+	padding: 10px;
+	width: 1004px;
+}
+
+div#buscador label{
+	width:70px;	
+	float:left;	
+	color:#333333;
+	font-weight:bold;	
+	vertical-align: middle;
+	text-align: left;
+	padding-right:10px;
+}
+
+#buscador .criterio{
+	float: left;
+	clear:none;
+	padding-right:15px;
+	padding-bottom:5px;
+}
+
+#buscador #divtitulo{
+	clear:both;
+	padding-bottom:5px;
+}
+
+#buscador #divboton{
+	clear:both;
+	height:28px;	
+}
+
+#buscador li {
+	display: block;
+	clear:none;
+	float: right;
+	height: 24px;
+	line-height:24px;
+	text-align:center;
+	width: 100px;
+	border: none;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+	background: url(../imagenes/boton.png) no-repeat;
+	padding-bottom:1px;
+	border:1px solid #666666;
+}
+
+#buscador li:hover {
+	background: url(../imagenes/botonseleccionado.png) top no-repeat;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+div#leftpanel #browser_panel{
+	width: 1024px;
+	clear:both;
+	float:left;
+}
+
+/*pie de pagina*/
+
+#footer{
+	width:1024px;
+	height:40px;
+	clear: both;	
+	text-align:center;
+	padding-top:15px;
+}
+
+#footer p{
+	color:#FF6600;
+	vertical-align:middle;
+}
+
+#footer p img{
+	border:none;
+	vertical-align:middle;
+}
+
+
+/*estilos de detalle*/
+div.columna{
+	float:left;	
+	/*margin:3px;*/
+}
+
+
+div.columna li {
+	display: block;
+	clear:none;
+	height: 24px;
+	line-height:24px;
+	text-align:center;
+	width: 100px;
+	border: none;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	color: #333333;
+	background: url(../imagenes/boton.png) no-repeat;
+	padding-bottom:1px;
+	border:1px solid #666666;
+}
+
+div.columna li:hover {
+	background: url(../imagenes/botonseleccionado.png) top no-repeat;
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+
+
+/*icono de item de propiedad*/
+div.columna#columna_thumbnail{
+
+	padding-right: 10px;
+	
+	
+}
+
+div.columna#columna_intro_emp{
+	width: 260px;
+	padding:10px;
+}
+
+div.columna#columna_iconos{
+	width: 200px;
+	padding:10px;
+}
+
+div.columna#columna_iconos img{
+	width: 30px;
+	border: 1px none;
+}
+
+div.columna#columna_descripcion{
+	padding:10px;
+	width:180px;
+}
+
+div.columna#columna_precio{
+	padding:10px;
+	width: 260px;
+
+	/*height:120px;*/
+}
+
+div.columna#columna_acciones{
+
+	padding:10px;
+	/*height:120px;*/
+	float:right;
+}
+
+
+
+
+
+/*panel de resultados de busqueda*/
+
+div#resultados #resultados_encabezado{
+
+	border: none;
+	text-align:center;
+	width: 1024px;
+	color: #333333;
+	float:left;
+	clear:both;
+	font-weight:bold;
+
+}
+
+div#resultados #resultados_lista{
+	width: 100%;
+	float:left;
+	clear:both;
+	margin-top:10px;
+	
+}
+
+div#resultados{
+	float:left;
+	clear: both;
+	margin-top:10px;
+	width:100%;
+}
+
+
+div#resultados .etiqueta_estado_propiedad{
+position:relative;
+left: -560px;
+float:left;
+font-size: 18px;
+font-weight: bold;
+color: #FFFFFF;
+margin-top:25px;
+margin-left:0px;
+background: #d31820;
+text-align:center;
+vertical-align:middle;
+width: 120px;
+padding-top:12px;
+padding-bottom:12px;
+padding-left: 0px;
+
+}
+
+
+
+
+/*tabla de resultados de busqueda*/
+
+
+.fila{
+	clear:both;
+	padding-left: 1px;
+	float:left;
+	margin-bottom: 5px;
+	width:1024px;
+}
+
+.fila_sombreada{
+	clear:both;
+	float:left;
+	margin: 0px;
+	padding:0px;	
+	border: 1px solid #CCCCCC;
+	background-color:#D6D6D6;
+	margin-bottom: 5px;
+	width:1024px;
+}
+
+
+
+
+/*imagenes thumbnails*/
+.thumbnail{
+	width: 120px;
+	height: 120px;
+	border: 1px solid  #d31820;
+}
+
+
+
+div#servicios ul {
+  margin:0;
+  padding-left: 1.5em;
+  line-height: 2em;
+}
+
+div#servicios ul li { 
+	padding-left: .2em;
+	padding-bottom: 6px;
+	list-style-image: url(../imagenes/vineta.png);
+}
+
+div#servicios #texto_servicios{
+	margin-top: 20px;
+	width: 500px;
+	text-align: justify;
+	float: left;
+}
+
+div#servicios #flash_servicios{
+	clear:none;
+	float:right;
+	margin-top: 20px;
+	padding: 2px;
+	border: 1px solid #CCCCC0;
+}
+
+
+div.itemcategoria{
+	float:left;
+	padding: 2px;
+	width: 45%;
+	text-align:center;
+}
+
+div.itemcategoria img{
+	border:none;
+}
+
+div.itemcategoria img:hover{
+	border:thin;
+}
+
+div.box_filtro{
+	float: left;
+	clear: none;
+	border-style: solid 1px #000000;
+	padding: 0px;
+	margin: 2px;
+}
+
+
+
+/*panel de publicidad*/
+
+#adwordspanel{
+	
+	/*
+	float:left;
+	clear:both;
+	*/
+	border-color:black;
+	border-style:dashed;
+	border-width:1px;
+	font-family:"Trebuchet MS";
+	font-size:12px;
+	padding: 5px;
+	text-align:justify;
+	margin-top:20px;
+}
+
+
+/*propiedades mas visitadas*/
+
+#masvistopanel{
+	
+	/*float:left;
+	clear:both;
+	*/
+	width:150px;
+	padding:0px;
+	background-color:#CCCCC0;
+	border:solid 1px #333333;
+	color:#333333;
+	/*text-align:center;*/
+	margin-top:2px;
+}
+
+#masvistopanel img{
+	width:135px;
+	height:135px;
+	padding: 10px;
+}
+
+
+
+

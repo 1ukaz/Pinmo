@@ -1,0 +1,106 @@
+<body>
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#msgContainer").accordion({
+		active: false, 
+		collapsible: true,
+		autoHeight: false,
+		change: markMessageAsRead
+	});
+	$(".toolTip").tooltip({track:true, delay:500, showURL:false, fade:200});
+	$.getScript("../../js/common/min/centroMensajes.js");
+});
+function markMessageAsRead(event, ui) {
+	var elText = ui.newHeader.text();
+	var laPosLeido = elText.indexOf("-");
+	var laPosRespo = elText.indexOf("[")
+	if( laPosLeido != -1 ) 
+	  var elNewText = elText.substring(0, laPosLeido);
+	else 
+	  var elNewText = elText;
+	elNewText += " - Leido";
+	if ( laPosRespo != -1 )
+	  elNewText += " [Respondido]";
+	ui.newHeader.children("a").text(elNewText);
+	ui.newHeader.children("a").css({"font-style":"italic", "color":"#3399CC"});
+	if (ui.newHeader.children("a").attr("href") !== undefined)
+	  if (ui.newHeader.children("a").attr("href").indexOf("f") == -1) {
+		  $.ajax({
+			  type: "GET",
+			  url: ui.newHeader.children("a").attr("href"),
+			  global: false,
+			  success: function(res) { showMsg(res, "highlight-alert", false); },
+			  error: function(xhr, status) { showMsg(status + ": " + xhr.responseText, "error-alert", true); }
+		  });
+		  var href = ui.newHeader.children("a").attr("href");
+		  href += "&f=1";
+		  ui.newHeader.children("a").attr("href", href);
+	  }		
+}
+</script>
+{/literal}
+<div style="float:left; width:100%; text-align:right; margin-bottom:5px; border-bottom:1px dotted #E4E4E4; padding:0px 0px 12px 0px">
+	<a href="./centroMensajes.php" id="btnRefresh" class="theButton ui-state-default ui-corner-all toolTip" title="Haga Click para Comprobar Mensajes Nuevos"><span class="ui-icon ui-icon-refresh"></span>Actualizar</a>
+</div>
+{if count($tplInmobiliaria->getMensajes()) gt 0}
+  <div id="msgContainer" style="float:left; width:100%; min-height:220px;">
+      {foreach name=mensajes item=mensaje from=$tplInmobiliaria->getMensajes()}
+          <h3>
+              {if $mensaje->getLeido()}
+                  <a href="./centroMensajes.php?acc=le&id={$mensaje->getIdMensaje()}&f=1" style="font-style:italic;color:#3399CC;">{$mensaje->getCabecera()}</a>
+              {else}
+                  <a href="./centroMensajes.php?acc=le&id={$mensaje->getIdMensaje()}">{$mensaje->getCabecera()}</a>
+              {/if}
+          </h3>
+          <div style="border-top:1px solid #EEE;">
+              <b>Fecha:</b>&nbsp;<i>{$mensaje->getFecha()}</i><br />
+              <b>Remitente:</b>&nbsp;<i>{$mensaje->getRemitente()}</i>
+              <p class="ui-corner-all" style="background-color:#FDFDE8; padding:10px 10px 10px 5px;">{$mensaje->getCuerpo()}</p>
+              <div style="float:right;">
+                  <a href="./centroMensajes.php?acc=re&id={$mensaje->getIdMensaje()}&m={$mensaje->getRemitente()}&p={$tplPaginador->getPage()}" class="reMsgLink">
+                      <img src="../../css/images/panel/Kmail-1.png" title="Haga Click para Responder El Mensaje" class="toolTip" />
+                  </a>     
+                  <a href="./centroMensajes.php?acc=de&id={$mensaje->getIdMensaje()}&p={$tplPaginador->getPage()}" class="deMsgLink">
+                      <img src="../../css/images/panel/Kdelete.png" title="Haga Click para Eliminar El Mensaje" class="toolTip" />
+                  </a>
+              </div>
+          </div>
+      {/foreach}    
+  </div>
+{else}
+  <div class="ui-state-error ui-corner-all" style="margin-top:100px; margin-bottom:15px; padding:0 .7em;"> 
+      <p><span class="ui-icon ui-icon-alert" style="float:left; margin-right:.3em;"></span> 
+      <strong>Aviso:</strong> Lo sentimos pero NO hay mensajes para leer en Nuestras Bases de Datos</p>
+  </div>
+{/if}
+{if $tplPaginador->getEstado() eq 1}
+	<div style="float:left; padding:45px 0px 0px 0px; width:100%;">
+      <table width="100%" border="0" class="paginador" align="center">
+      <tbody>
+          <tr> 
+              <td colspan='3' align="center">Hasta {$tplPaginador->getLimit()} Mensajes por P&aacute;gina</td>
+              <td colspan='2' align="left" style="padding-left:150px;">Total de Mensajes en la Base de Datos: {$tplPaginador->getTotalRows()}</td>
+              <td colspan='3' align="center">P&aacute;gina {$tplPaginador->getPage()} de {$tplPaginador->getNumPages()}</td>
+          </tr>
+          <tr><td colspan='8'>&nbsp;</td></tr>
+          <tr> 
+              <td colspan='8' align="center">Ir a p&aacute;gina 
+                  <select name="comboPag" id="comboPag" class="pagCombo" onChange="changePaginatorPage('./centroMensajes.php?idr=Mostrar_Contenido', '1');">
+                      {html_options values=$tplPaginatorCombo.values selected=$tplPaginador->getPage() output=$tplPaginatorCombo.output}
+                  </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a href="./centroMensajes.php?p=1" class="pagLink">Primera</a> |
+                  {if $tplPaginador->getPage()-1 gt 0}
+                      <a href="./centroMensajes.php?p={$tplPaginador->getPage()-1}" class="pagLink">Anterior</a> | 
+                  {/if}
+                  {if $tplPaginador->getPage()+1 lt $tplPaginador->getNumPages()}
+                      <a href="./centroMensajes.php?p={$tplPaginador->getPage()+1}" class="pagLink">Siguiente</a> | 
+                  {/if}
+                  <a href="./centroMensajes.php?p={$tplPaginador->getNumPages()}" class="pagLink">Ultima</a>
+              </td>
+          </tr>
+      </tbody>
+	  </table>
+	</div>
+{/if}
+</body>

@@ -1,0 +1,73 @@
+<script type="text/javascript" language="javascript" src="../../js/common/min/buscadorPropio.js"></script>
+<div class="searchForm">
+	<form id="frmBusquedaPropia" method="POST" action="./buscadorPropio.php?acc=search">
+		<div id="formContainer">
+			<fieldset><legend>Seleccione Criterios de B&uacute;squeda</legend>
+        		<ul style="padding-top:10px;">
+                     <li>
+                     	<label for="cboTipoPublicacion_P">Tipo de Publicacion:</label>
+                        <select class="std ignore" id="cboTipoPublicacion_P" name="cboTipoPublicacion_P" tabindex="1">
+                        	{html_options values=$tplCboTisPubsP.values output=$tplCboTisPubsP.output selected=0}
+                        </select>
+                     </li>
+                     <li>
+                        <label for="cboTipoPropiedad_P">Tipo de Propiedad:</label>
+                        <select class="std ignore" id="cboTipoPropiedad_P" name="cboTipoPropiedad_P" tabindex="2">
+                        	{html_options values=$tplCboTisPropP.values output=$tplCboTisPropP.output selected=0}
+                        </select>
+                     </li>                           
+                     <li>
+                        <label for="cboProvincia_P">Provincia:</label>
+                        <select class="std ignore" id="cboProvincia_P" name="cboProvincia_P" tabindex="3">
+                        	{html_options values=$tplCboProvsP.values output=$tplCboProvsP.output selected=0}	
+                        </select>
+                     </li>
+                     <li>
+                        <label for="cboLocalidad_P">Localidad:</label>
+                        <select class="std ignore" id="cboLocalidad_P" name="cboLocalidad_P" tabindex="4"></select>
+                     </li> 
+                     <li>
+                        <label for="txtCalle_P">Calle:</label>
+                        <input name="txtCalle_P" id="txtCalle_P" type="text" class="std ignore" tabindex="5" maxlength="45" />		
+                     </li>
+                     <li>
+                        <label for="txtNumero_P">N&uacute;mero:</label>
+                        <input name="txtNumero_P" id="txtNumero_P" type="text" tabindex="6" maxlength="6" class="std" />
+                     </li>                                          
+        		</ul>   
+        		<ul style="padding-bottom:15px;">
+                     <li>
+                        <label for="txtCodigoReferencia_P">C&oacute;digo Ref.:</label>
+                        <input name="txtCodigoReferencia_P" id="txtCodigoReferencia_P" type="text" class="std ignore" tabindex="7" maxlength="20" />
+                     </li>                             
+                     <li>
+                        <label for="txtAntiguedad_P">Antiguedad (hasta):</label>			
+                        <input name="txtAntiguedad_P" id="txtAntiguedad_P"  type="text" tabindex="8" maxlength="10" class="std" />
+                     </li>
+                     <li>
+                        <label for="txtAmbientes_P">Ambientes (desde):</label>
+                        <input name="txtAmbientes_P" id="txtAmbientes_P" type="text" tabindex="9" maxlength="10" class="std" />
+                     </li>
+                     <li>
+                        <label for="txtSuperficieTotal_P">Superficie (desde):</label>
+                        <input name="txtSuperficieTotal_P" id="txtSuperficieTotal_P" type="text" tabindex="10" maxlength="10" class="std" />
+                     </li>
+                     <li>
+                        <label for="txtPrecio_P">Precio (hasta):</label>			
+                        <input name="txtPrecio_P" id="txtPrecio_P"  type="text" tabindex="11" maxlength="11" class="std" />
+                     </li>
+        		</ul>
+			</fieldset>
+		</div>
+        <div class="filaBoton">
+            <div style="float:left; width:50%; padding-top:11px;">
+            	<a href="propiedadNew.php?tittle=Alta_De_Propiedad&acc=ne" id="btnNuevaProp" class="theButton ui-state-default ui-corner-all" title="Haciendo Click en este Boton, Abrirá una Ventana para Ingresar una Nueva Propiedad"><span class="ui-icon ui-icon-newwin"></span>Nueva Propiedad</a>
+            </div>
+        	<div style="float:left; width:50%; text-align:right; padding-top:11px;">
+            	<a href="buscadorPropio.php?acc=search&o=1" id="btnSubmitPropio" class="theButton ui-state-default ui-priority-primary ui-corner-all" title="Haciendo Click en este Boton, se realizará la Búsqueda y se mostrarán los Resultados"><span class="ui-icon ui-icon-search"></span>Buscar</a>
+          		<a href="buscadorPropio.php" id="btnCancelPropio" class="theButton ui-state-default ui-corner-all" title="Haciendo Click en este Boton, Re-establece los Parametros de la Búsqueda, y Limpia los Resultados"><span class="ui-icon ui-icon-refresh"></span>Limpiar</a>
+            </div>
+        </div>
+	</form>
+</div>
+<div id="searchResultsPropio" class="searchResults"></div>

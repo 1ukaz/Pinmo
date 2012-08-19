@@ -1,0 +1,62 @@
+/* CSS Document */
+
+@import "../UI-Portal/jquery-ui.css";
+@import "../plugins/jquery.jgrowl.css";
+@import "../plugins/jcarousellite.css";
+@import "../plugins/sexylightbox.css";
+@import "../plugins/jpaginator.style.css";
+@import "../plugins/jquery.tooltip.css";
+
+body { margin:0px; padding:0px; background:#FFFFFF url('../images/portal/img05-b.png') repeat-x left top; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#464032; overflow-x:hidden; }
+h1, h2, h3, h4, h5 { margin:0px; padding:0px; font-weight:normal; color:#333333; }
+h1 { font-size:2em; }
+h2 { font-size:2.4em; }
+h3 { font-size:1.6em; }
+p, ul, ol { margin-top:0px; line-height:180%; }
+ul, ol { list-style-type:none; line-height:normal; margin:0px; padding:0px; }
+a { text-decoration:none; color:#9D151A; }
+a:hover { text-decoration:underline; }
+div.jGrowl div.jGrowl-notification .message { padding:15px 5px 15px 55px; }
+.error-alert { background:#FEF1EC url('../images/gen/Kcancel.png') no-repeat 3% 50%; border:1px solid; color:#CD0A0A; }
+.succesfull-alert { background:#C4DA92 url('../images/gen/Kok.png') no-repeat 5% 50%; border:1px solid; color:#006600; font-weight:bold; padding:10px 0px 0px 0px; }
+
+/* Wrapper */
+#wrapper { width:940px; margin:0 auto; padding:0px; }
+
+/* Header */
+#header { width:940px; height:114px; margin:0 auto; }
+
+/* Logo */
+#logo { float:left;	height:69px; width:940px; margin:0px; background: url('../images/portal/lg_Header-New.png') no-repeat 10px 10px; padding:30px 0px 0px 0px; color:#000000; }
+#logo h1, #logo p { margin:0px; padding:0px; }
+#logo h1 { float:left; padding:0px 0px 0px 325px; letter-spacing:5px; font-size:20px; font-weight:bold; }
+#logo p { float:left; margin:0px; padding:26px 0 0 20px; font: normal 14px Georgia, "Times New Roman", Times, serif; font-style:italic; color:#5E4E38; } 
+#logo p a { color:#5E4E38; }
+#logo a { border:none; background:none;	text-decoration:none; color:#A83A01; }
+
+/* Menu */
+#menu { width:940px; height:36px; margin:0 auto; padding:0px; }
+#menu ul { margin:0px 0px 0px 10px; padding:0px; list-style:none; line-height:normal; float:left; }
+#menu li { float:left; }
+#menu a { display:block; height:26px; margin-right:2px; margin-bottom:10px; padding:10px 20px 0px 20px; text-decoration:none; text-align:center; text-transform:uppercase; font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; color:#FFFFFF; border:none; }
+#menu a:hover, #menu .current_page_item a { background:#FFFFFF; text-decoration:none; color:#333333; }
+#menu .current_page_item a { background:#FFFFFF; color:#333333; }
+
+/* Page */
+#page { width:940px; margin:0 auto; padding:0px; }
+#page .locationInfo { padding:5px 0px 10px 0px; text-align:left; font-size:10px; float:left; width:100%; margin:0px 0px 5px; }
+
+/* Footer */
+
+#footer { width:940px; height:50px; margin:20px auto; padding:0px 0 15px 0; font-family: Arial, Helvetica, sans-serif; background:url('../images/portal/fd_SombraDivCentro-940.png') 15px 0 no-repeat; }
+#footer p { margin:0; padding-top:20px; line-height:normal; font-size:10px; text-transform:uppercase; text-align:center; color:#444444; vertical-align:middle; }
+#footer a { color:#464032; }
+#footer img { border:none; }
+
+#tooltip { font-size:8px; font-weight:bold; }
+
+.clearfix { clear:left; }
+.clearfull { clear:both; }
+.divisorShadow { margin:10px 0px; background:url('../images/portal/fd_SombraDivCentro-940.png') 15px 0 no-repeat; height:8px; }
+.divisorDotted { margin:10px 0px; border-bottom:1px dotted #CCCCCC; height:5px; }
+

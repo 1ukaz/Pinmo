@@ -1,0 +1,88 @@
+/* CSS Document */
+
+/*body { background-image:none !important; }*/
+
+a.lm { padding:2px 5px; background-color:#A31319; color:#FFFFFF; }
+a.lm:hover { background-color:#FFFFFF; color:#A31319; }
+#selOrden { font-size:10px; width:90px; padding:1px; }
+.ord { float:right; }
+.ord > div { font-size:11px; font-weight:normal; padding:1px 0 0; display:inline; }
+.blackOverlay { position:fixed; top:0%; left:0%; width:100%; height:100%; background:url('../UI-Panel/images/ui-bg_diagonals-super-thick_8_000000_120x120.png'); z-index:1001; -moz-opacity:0.7; opacity:.70; display:none; }
+.modalWrapper { position:absolute; top:10px; left:50%; margin-left:-475px; width:900px; height:475px; padding:15px; border:10px solid #A31319; background-color:white; z-index:1002; display:none; }
+#mainLoader { background-color: #FFFFFF; background-image:url('../images/gen/ajax-yin-s.gif'); margin: 10px 0px; padding:10px 10px 22px 70px; background-repeat:no-repeat; background-position: 10px center; font-family: 'Courier New'; font-size:12px; color:#000000; border:5px double #000000; width:90px; height:30px; position:fixed; left:50%; margin-left:-80px; z-index:1010; box-shadow:5px 5px 5px #222; -moz-box-shadow:5px 5px 5px #222; -webkit-box-shadow:5px 5px 5px #222; filter: progid:DXImageTransform.Microsoft.Shadow(color=#222222,direction=135); }
+#textLoader { position:fixed; background-color:#A31319; color:#FFFFFF; bottom:0; right:0; padding:5px 30px 5px 40px; font-size:11px; font-weight:bolder; display:none; height:15px;	}
+img.listedThumb { background-color:#FFFFFF; padding:3px; border:2px solid #9D151A; width:100px; height:100px; }
+
+/* Content */
+#content { float:right; width:690px; background: url('../images/portal/img03.png') no-repeat left top; }
+#content h3 { height:25px; margin:0px 0px 5px 0px; padding:7px 20px 0px 20px; text-align:left; font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:bold; color:#F9F9F9; }
+#content #itemsList { padding:0px 0px 10px 0px; }
+#content ul.items li { margin:0px; padding:0px; }
+#content ul.items li:hover { background:url('../images/portal/fd_Buscador.png') 0 70% repeat-x;	}
+#content ul.items li .Gris { border-bottom:1px solid #9D151A; }
+#content ul.items li .Box { margin:0px; padding:12px 0px 8px; height:140px; }
+#content ul.items li .Box .Detalle li { float:left; margin:5px; }
+#content ul.items li .Box .Detalle a.moreInfo { background:url("../images/portal/bt_Plus.png") no-repeat scroll right 2px transparent; padding:0px 15px; } 
+#content ul.items li .Box .Detalle li.desc { padding-top:5px; font-size:14px; width:390px; }
+#content ul.items li .Box .Detalle li.desc .its { border:1px solid #EEEEEE; min-height:35px; margin:10px 0px 0px 0px; font-size:9px; }
+#content ul.items li .Box .Detalle li.precio { margin:0px; padding:0px 5px 0px 0px; width:150px; text-align:right; font-size:14px; font-weight:bold; }
+#content ul.items li .Box .Detalle .inmob { margin:20px 0px 0px 0px; padding:5px 2px; font-size:12px; font-weight:bold; color:#F9F9F9; background-color:#9D151A; float:right; width:105px; text-align:center; }
+#content ul.items li .Box .Detalle li.Img { position:relative; }
+#content ul.items li .Box .Detalle li.Img .cantFotos { height:36px; left:51px; position:absolute; top:75px; width:96px; background:url("../images/portal/fd_cantFotos.png") no-repeat scroll 0 0 transparent; }
+#content ul.items li .Box .Detalle li.Img .cantFotos .txtFotos { color:#FFFFFF; font-size:11px; font-weight:bold; position:absolute; right:37px; top:3px; }
+#content ul.items li .Box .Detalle li.Img .newProp { background:url("../images/portal/fd_New3.png") no-repeat scroll 0 0 transparent; height:70px; position:absolute; right:-3px; top:-3px; width:71px; }
+
+/* Sidebar */
+#sidebar { float:left; width:230px; padding:0px; color:#787878; }
+#sidebar ul { margin:0px; padding:0px; list-style:none; }
+#sidebar li { margin:0px 0px 5px; padding:0px; }
+#sidebar li ul { margin:0px 0px; padding-bottom:30px; border-right:1px solid #E9E3CB; }
+#sidebar li li { line-height:35px; border-bottom:1px dotted #E5E0C6; margin:0px 30px; border-right:none; }
+#sidebar li li:hover { line-height:35px; border-bottom:1px dotted #E5E0C6; margin:0px 0px 0px 0px; padding:0px 0px 0px 30px; border-right:none; background:#E5E0C6; }
+#sidebar li li span { display:block; margin-top:-20px; padding:0px; font-size:11px; font-style:italic; }
+#sidebar h2 { background: url('../images/portal/img02.png') no-repeat left top;	padding-left:30px; padding-top:6px;	padding-bottom:6px;	letter-spacing:-.5px; font-size:16px; font-weight:bold; color:#FFFFFF; }
+#sidebar .sombra230 { background:url('../images/portal/fd_SombraDivCentro-230.png') no-repeat center top; height:15px; width:230px;	}
+#sidebar .Divisor  { background:url('../images/portal/fd_Divisor.png') repeat-x scroll 0 0 transparent; height:2px; left:-3px; margin:6px; position:relative; }
+#sidebar .FiltrosAplicados  { background:#A31319; padding:15px 10px 10px; position:relative; }
+#sidebar .FiltrosAplicados .filtroTittle { letter-spacing:-.5px; font-size:16px; font-weight:bold; color:#FFFFFF; padding:0px 0px 10px 10px; }
+#sidebar .FiltrosAplicados .filtroTittle a { letter-spacing:normal; font-size:10px; font-weight:normal; color:#FFFFFF; float:right; position:relative; cursor:help; text-align:center; }
+#sidebar .FiltrosAplicados .CR { background:url('../images/portal/rc_Fondos.png') no-repeat scroll 0 0 transparent; height:8px; position:absolute; width:8px; }
+#sidebar .FiltrosAplicados .Tl { background-position:left top; left:0px; top:0px; }
+#sidebar .FiltrosAplicados .Tr { background-position:right top; right:0px; top:0px; }
+#sidebar .FiltrosAplicados .Bl { background-position:left bottom; bottom:0px; left:0px; }
+#sidebar .FiltrosAplicados .Br { background-position:right bottom; bottom:0px; right:0px; }
+#sidebar .FiltrosAplicados .tipo  { background:url('../images/portal/fd_tipoFiltroApp2.png') no-repeat scroll right top transparent; margin:5px 0 0; padding:7px 0 6px; position:relative; width:210px; height:15px; }
+#sidebar .FiltrosAplicados .tipo:hover  { background:url('../images/portal/fd_tipoFiltroApp2.png') no-repeat scroll right bottom transparent; }
+#sidebar .FiltrosAplicados .tipo:hover > div  { color:#FFFFFF; }
+#sidebar .FiltrosAplicados .tipo > div  { float:left; width:185px; padding-left:7px; color:#444444; font-size:11px; }
+#sidebar .FiltrosAplicados .tipo .delFiltro { background:url('../images/portal/bt_Cancel.png') no-repeat scroll 0 3px transparent; float:right; height:13px; width:17px; }
+#sidebar .FiltrosAplicar .filtroTittle { background:#A31319; letter-spacing:-.5px; font-size:16px; font-weight:bold; color:#FFFFFF; padding:15px 0px 10px 20px; position:relative; }
+#sidebar .FiltrosAplicar .filtroTittle .CR { background:url('../images/portal/rc_Fondos.png') repeat scroll 0 0 transparent; height:8px; width:8px; position:absolute; }
+#sidebar .FiltrosAplicar .filtroTittle .Tl { background-position:left top; left:0px; top:0px; }
+#sidebar .FiltrosAplicar .filtroTittle .Tr { background-position:right top; right:0px; top:0px; }
+#sidebar .FiltrosAplicar .Content { background:#A31319; padding:0 10px 15px; position:relative; }
+#sidebar .FiltrosAplicar .Content .CR { background:url('../images/portal/rc_Fondos.png') repeat scroll 0 0 transparent; height:8px;	width:8px; position:absolute; }
+#sidebar .FiltrosAplicar .Content .Bl { background-position:left bottom; bottom:0px; left:0px; }
+#sidebar .FiltrosAplicar .Content .Br { background-position:right bottom; bottom:0px; right:0px; }
+#sidebar .FiltrosAplicar .Content .inner { background:#F8F8F8; padding:0px 0px 26px 6px; position:relative; }
+#sidebar .FiltrosAplicar .Content .inner .CR { background:url('../images/portal/rc_Inner.png') no-repeat scroll 0 0 transparent; height:4px; position:absolute; width:4px; }
+#sidebar .FiltrosAplicar .Content .inner .Tl { background-position:left top; left:0px; top:0px; }
+#sidebar .FiltrosAplicar .Content .inner .Tr { background-position:right top; right:0px; top:0px; }
+#sidebar .FiltrosAplicar .Content .inner .Bl { background-position:left bottom; bottom:0px; left:0px; }
+#sidebar .FiltrosAplicar .Content .inner .Br { background-position:right bottom; bottom:0px; right:0px; }
+#sidebar .FiltrosAplicar .Content .inner .filtroModulo { padding:0px; margin:0px; }
+#sidebar .FiltrosAplicar .Content .inner .filtroModulo { padding:10px 0px 0px 0px; }
+#sidebar .FiltrosAplicar .Content .inner .filtroModulo .toogleButton p { background-image:url('../images/portal/bt_ToogleFiltroUp.png'); background-repeat:no-repeat; background-position:0px 5px; color:#005616; cursor:pointer; font-weight:bold; padding:0 0 0 20px; margin:0px; }
+#sidebar .FiltrosAplicar .Content .inner .filtroModulo .subOpciones { padding:4px 0 1px 20px; }
+#sidebar .FiltrosAplicar .Content .inner .filtroModulo .subOpciones ul li { float:none; }
+#sidebar a { border:none; color:#464032; }
+#sidebar a:hover { text-decoration:underline; color:#8A8A8A; }
+#sidebar .subOpciones a.subExpander { background:url("../images/portal/bt_Plus.png") no-repeat scroll 0 1px transparent; padding:0px 0px 0px 15px; }
+#sidebar .subOpciones a.subCollapser { background:url("../images/portal/bt_Less.png") no-repeat scroll 0 1px transparent; padding:0px 0px 0px 15px; }
+#sidebar .subOpciones a.sidebarButton { background:url("../images/portal/bt_Precio3.png") no-repeat scroll center bottom transparent; width:61px; display:block; height:19px; line-height:18px; }
+#sidebar .subOpciones a.sidebarButton:hover { background-position:center top; text-decoration:none;	}
+#sidebar .subOpciones a.sidebarButton span { color:#FFFFFF; font-size:12px; font-weight:bolder; padding:0 10px; }
+
+#mapCanvas { width:900px; height:425px; border:1px dotted #A31319; background-color:#FFFFFF; font-size:10px; }
+#mapCanvas .infoWindow { width:200px; height:110px; position:absolute; }
+#mapCanvas .infoWindow li { float:left; text-align:left; }

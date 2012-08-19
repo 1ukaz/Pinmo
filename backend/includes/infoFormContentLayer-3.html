@@ -1,0 +1,63 @@
+<fieldset><legend>Datos de Publicaci&oacute;n del Inmueble</legend>
+<div class="innerContainerDiv">
+    <table border="0" cellpadding="7" cellspacing="0" align="center">
+    	<thead>
+        <tr>
+            <th align="center">Tipo Publicaci&oacute;n</th>
+            <th align="center">Precio</th>
+            <th align="center">Moneda</th>
+            <th align="center">Estado</th>
+            <th align="center">Pueden Verla</th>
+            <th align="center">Comisi&oacute;n (%)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach name=publicaciones item=publicacion from=$tplArrayPublicaciones}
+        <input type="hidden" id="thePublicaciones_ABM[$publicacion->getTipoPublicacion()][id]" name="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][id]" value="{$publicacion->getIdTipoPublicacion()}">
+        <tr class="{cycle name="pubCycle" values="pairRow,unpairRow"}">
+            <td align="left">
+                {$publicacion->getTipoPublicacion()}:
+             </td>
+            <td>
+                <input id="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][monto]" size="11" name="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][monto]" type="text" value="{$publicacion->getMonto(1)}" class="montoPubs" />
+            </td>
+            <td>
+                <select id="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][idMoneda]" name="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][idMoneda]" tabindex="" >
+                    {html_options values=$tplCboTisMoneABM.values output=$tplCboTisMoneABM.output selected=$publicacion->getIdTipoMoneda()}
+                </select>
+            </td>
+            <td>
+                <select id="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][idEstPub]" name="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][idEstPub]" tabindex="" >
+                    {html_options values=$tplCboEstPubsABM.values output=$tplCboEstPubsABM.output selected=$publicacion->getIdEstadoPublicacion()}
+                </select>
+            </td>
+            <td>
+                <select id="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][idEstExcl]" name="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][idEstExcl]" tabindex="" >
+                    {html_options values=$tplCboEstExclABM.values output=$tplCboEstExclABM.output selected=$publicacion->getIdEstadoExclusividad()}
+                </select>
+            </td>
+            <td>
+                <input id="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][comi]" name="thePublicaciones_ABM[{$publicacion->getTipoPublicacion()}][comi]" type="text" value="{$publicacion->getComision()}" class="short" tabindex="" />
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    <div style="width:800px; padding:35px 0px 20px 70px;">
+        <fieldset><legend>Publicaci&oacute;n en Determinada Zona NO Geogr&aacute;fica</legend>
+            <ul style="padding:0px 0px 20px 0px; margin:0px;">
+                <li style="width:345px;">
+                    <label class="large" for="txtAliasLoc_ABM">Publicar en Zona:</label>
+                    <input name="txtAliasLoc_ABM" id="txtAliasLoc_ABM" type="text" value="{$tplProp->ubicacion->getAliasLocalidad()}" class="std" />
+                </li>        
+            </ul>
+            <div style="float:left; width:100%; font-size:1em; font-style:italic; color:#999999; border-top:1px solid #EEE; text-align:left;">
+            	<div style="position:relative; top:-8px; left:10px; float:left; background-color:#FFF; padding:0px 5px;">Nota</div>
+            	<p style="padding-left:50px;">Este campo Adicional responde a si usted desea que la Publicaci&oacute;n aparezca en una determinada Zona NO Geogr&aacute;fica.<br />
+            	Por Zona NO Geogr&aacute;fica, se refiere a T&eacute;rminos de Mercadeo o Denominaciones, sobre los diferentes Barrios. <br />
+                Un Ejemplo de Esto seria &quot;Palermo Hoollywood&quot; o &quot;Las Ca&ntilde;itas&quot; Que NO son Barrios Geograficamente hablando</p>
+            </div>
+        </fieldset>
+    </div>
+</div>
+</fieldset>

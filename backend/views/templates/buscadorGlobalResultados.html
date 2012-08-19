@@ -1,0 +1,94 @@
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".toolTip").tooltip({track:true, delay:500, showURL:false, fade:200});
+});
+</script>
+{/literal}
+{if count($tplSearchObject->getListado()) gt 0}
+	<table id="resultadosGlobales" class="tablaListado" border="0" cellspacing="0" cellpadding="0">
+    	<thead>
+		<tr class="tableHeader">
+			<th width="5%">Imagen</th>
+			<th width="15%"><a class="orderLink toolTip" href="./buscadorGlobal.php?acc=search&o=2&p={$tplSearchObject->oPaginador->getPage()}&idf=frmBusquedaGlobal&idr=searchResultsGlobal" title="Haciendo Click Ordena Los Resultados por Inmobiliaria"><span class="ui-icon ui-icon-carat-1-s"></span>Inmobiliaria</a></th>
+			<th width="10%"><a class="orderLink toolTip" href="./buscadorGlobal.php?acc=search&o=4&p={$tplSearchObject->oPaginador->getPage()}&idf=frmBusquedaGlobal&idr=searchResultsGlobal" title="Haciendo Click Ordena Los Resultados por Zona"><span class="ui-icon ui-icon-carat-1-s"></span>Zona</a></th>
+			<th width="30%"><a class="orderLink toolTip" href="./buscadorGlobal.php?acc=search&o=5&p={$tplSearchObject->oPaginador->getPage()}&idf=frmBusquedaGlobal&idr=searchResultsGlobal" title="Haciendo Click Ordena Los Resultados por Domicilio"><span class="ui-icon ui-icon-carat-1-s"></span>Domicilio</a></th>
+			<th width="25%">Publicaci&oacute;n</th>
+			<th>Acci&oacute;n</th>
+		</tr>
+        </thead>
+        <tbody>
+        <tr class="sepa"><td colspan="6"></td></tr>
+		{section name=item loop=$tplSearchObject->getListado()}
+		<tr id="Row_{$smarty.section.item.index}" class="{cycle values="pairRow,unpairRow"}">
+			<td align="center">
+            	{if count($tplSearchObject->aListado[item]->getImagenes()) gt 0}
+                	<a href="./propiedadDeta.php?i={$smarty.section.item.index}&acc=ve&tittle=Detalles_de_la_Propiedad" class="accLink">
+                		<img src="{$tplSearchObject->aListado[item]->aImagenes[0]->getThumbFullPath()}" class="listedThumb toolTip" title="Haga Click para Ver los Detalles de La Propiedad" />
+                	</a>
+                {else}
+                	<img src="../../pictures/no-image.png" class="listedThumb" />
+                {/if}
+            </td>
+			<td>{$tplSearchObject->aListado[item]->inmobiliaria->getNombre()}</td>
+			<td>{$tplSearchObject->aListado[item]->ubicacion->getNomLocalidad()}</td>
+			<td>
+            	{$tplSearchObject->aListado[item]->ubicacion->getCalle()} 
+                {$tplSearchObject->aListado[item]->ubicacion->getNumero()} 
+                {$tplSearchObject->aListado[item]->ubicacion->getPiso()} 
+                {$tplSearchObject->aListado[item]->ubicacion->getDepartamento()}
+            </td>
+			<td>
+            	{if count($tplSearchObject->aListado[item]->getPublicaciones()) gt 0}
+                    {section name=publicacion loop=$tplSearchObject->aListado[item]->getPublicaciones()}
+                        {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 7}
+                            <strong>{$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true}</strong>:
+                            {if is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto())}
+                                {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMoneda()}               
+                            {/if}
+                            {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto()}<br />
+                        {/if}
+                    {/section}
+                {/if}
+            </td>
+			<td>
+                <a href="./propiedadDeta.php?i={$smarty.section.item.index}&acc=ve&tittle=Detalles_de_la_Propiedad" class="accLink">
+                	<img src="../../css/images/panel/Kdetails.png" class="toolTip" title="Haga Click para Ver los Detalles de La Propiedad" />
+                </a>
+				<a href="./propiedadDeta.php?i={$smarty.section.item.index}&acc=pd">
+    				<img src="../../css/images/panel/pdf-2.png" class="toolTip" title="Haga Click para Guardar La Propiedad Como Archivo PDF" />
+    			</a>
+			</td>
+		</tr>
+        <tr class="sepa"><td colspan="6"></td></tr>
+		{/section}
+    </tbody>
+	</table><br/ ><br /> 
+	{if $tplSearchObject->oPaginador->getEstado() eq 1}
+		<table width="100%" border="0" class="paginador" align="center">
+        <tbody>
+			<tr> 
+				<td width="20%" align="center">Hasta {$tplSearchObject->oPaginador->getLimit()} Registros por P&aacute;gina</td>
+				<td width="70%" align="left" style="padding-left:20%;">Total de Registros en la Base de Datos: {$tplSearchObject->oPaginador->getTotalRows()}</td>
+				<td width="10%" align="center">P&aacute;gina {$tplSearchObject->oPaginador->getPage()} de {$tplSearchObject->oPaginador->getNumPages()}</td>
+			</tr>
+			<tr><td colspan='6'>&nbsp;</td></tr>
+			<tr> 
+				<td colspan='6' align="center">Ir a p&aacute;gina 
+					<select name="comboPag" id="comboPag" class="pagCombo" onChange="changePaginatorPage('./buscadorGlobal.php?acc=search&idf=frmBusquedaGlobal&idr=searchResultsGlobal&o={$tplOrden}');">
+						{html_options values=$tplPaginatorCombo.values selected=$tplSearchObject->oPaginador->getPage() output=$tplPaginatorCombo.output}
+					</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="./buscadorGlobal.php?acc=search&o={$tplOrden}&p=1&idf=frmBusquedaGlobal&idr=searchResultsGlobal" class="pagLink">Primera</a> |
+					{if $tplSearchObject->oPaginador->getPage()-1 gt 0}
+						<a href="./buscadorGlobal.php?acc=search&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()-1}&idf=frmBusquedaGlobal&idr=searchResultsGlobal" class="pagLink">Anterior</a> | 
+					{/if}
+					{if $tplSearchObject->oPaginador->getPage()+1 lte $tplSearchObject->oPaginador->getNumPages()}
+						<a href="./buscadorGlobal.php?acc=search&o={$tplOrden}&p={$tplSearchObject->oPaginador->getPage()+1}&idf=frmBusquedaGlobal&idr=searchResultsGlobal" class="pagLink">Siguiente</a> | 
+					{/if}
+					<a href="./buscadorGlobal.php?acc=search&o={$tplOrden}&p={$tplSearchObject->oPaginador->getNumPages()}&idf=frmBusquedaGlobal&idr=searchResultsGlobal" class="pagLink">Ultima</a>
+				</td>
+			</tr>
+        </tbody>
+		</table>
+	{/if} 
+{/if} 

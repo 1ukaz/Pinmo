@@ -1,0 +1,105 @@
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".accLink").hide();
+	$(".itm").tooltip({track:true, delay:250, showURL:false, fade:200});
+	$("#content ul.items > li").each(function(){
+		$(this).hover(
+			function() { $(this).find(".accLink").show(); },
+			function() { $(this).find(".accLink").hide(); }		
+		);
+	});	
+});
+</script>
+{/literal}
+<p>Para ver los resultados en el Mapa, haga click <a href="busqueda.php" class="lm" id="mapLink">Aqui</a></p>
+<ul class="items">
+    {section name=item loop=$tplSearchObject->getListado()}
+        <li id="res_{$smarty.section.item.index}">
+            <div class="Box Gris">
+                <div class="Detalle">
+                    <ul class="ui-helper-clearfix">
+                        <li class="Img">
+                            {if $tplSearchObject->aListado[item]->getDaysFromAlta() lt 30}
+                                <div class="newProp"></div>
+                            {/if}
+                            {if count($tplSearchObject->aListado[item]->getImagenes()) gt 0}
+                                <div class="cantFotos"><span class="txtFotos">{$tplSearchObject->aListado[item]->getCantImagenes()} Fotos</span></div>                                
+                                <a href="detalles/{$tplSearchObject->aListado[item]->getIdPropiedad()}/{$tplSearchObject->aListado[item]->getParsedUrlFriendlyString()}.html">
+                                    <img src="{$tplSearchObject->aListado[item]->aImagenes[0]->getThumbFullPath()}" class="listedThumb toolTip" title="Haga Click para Ver los Detalles de La Propiedad" />
+                                </a>
+                            {else}
+                                <img src="pictures/no-image.png" class="listedThumb" />
+                            {/if}
+                        </li>
+                        <li class="desc">
+                            <strong>
+                            <a href="detalles/{$tplSearchObject->aListado[item]->getIdPropiedad()}/{$tplSearchObject->aListado[item]->getParsedUrlFriendlyString()}.html">
+                                {$tplSearchObject->aListado[item]->getTipoPropiedad()} en
+                                {if count($tplSearchObject->aListado[item]->getPublicaciones()) gt 0}
+                                    {section name=publicacion loop=$tplSearchObject->aListado[item]->getPublicaciones()}
+                                        {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdTipoPublicacion() eq $tplSearchObject->busTipoPublicacion.value}
+                                            {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true} |
+                                        {else}
+                                            {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 7 && $tplSearchObject->busTipoPublicacion.value eq 0}
+                                                {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true} |
+                                            {/if}
+                                        {/if}
+                                    {/section}
+                                {/if}
+                                {if $tplSearchObject->aListado[item]->getCantAmbientes() gt 0}
+                                    {$tplSearchObject->aListado[item]->getCantAmbientes()} Ambientes |
+                                {/if}
+                                {$tplSearchObject->aListado[item]->ubicacion->getCalle()} al
+                                {$tplSearchObject->aListado[item]->ubicacion->getNumero(1)}
+                                {if is_numeric($tplSearchObject->aListado[item]->ubicacion->getPiso())}
+                                    {$tplSearchObject->aListado[item]->ubicacion->getPiso()}&deg; Piso
+                                {else}
+                                    {$tplSearchObject->aListado[item]->ubicacion->getPiso()}
+                                {/if}
+                                | {$tplSearchObject->aListado[item]->ubicacion->getNomLocalidad()}
+                            </a>
+                            </strong>
+                            <div class="its"> 
+                                {if $tplSearchObject->aListado[item]->getItems()}
+                                    <ul>
+                                    {foreach name=items item=item from=$tplSearchObject->aListado[item]->getItems()}
+                                        {if $item->getIcono() neq ''}
+                                            <li><img class="itm" src="css/images/items/{$item->getIcono()}" width="24" title="{$item->getDescripcion()}" alt="{$item->getDescripcion()}" /></li>
+                                        {/if}
+                                    {/foreach}
+                                    </ul>
+                                {/if}
+                            </div>
+                        </li>
+                        <li class="precio">
+                            {if count($tplSearchObject->aListado[item]->getPublicaciones()) gt 0}
+                                {section name=publicacion loop=$tplSearchObject->aListado[item]->getPublicaciones()}
+                                {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdTipoPublicacion() eq $tplSearchObject->busTipoPublicacion.value}             
+                                    {if is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto())}
+                                        {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMoneda()}               
+                                    {/if}
+                                    {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto()}<br />
+                                {else}
+                                    {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 7 && $tplSearchObject->busTipoPublicacion.value eq 0}
+                                        {if is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto())}
+                                            {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMoneda()}               
+                                        {/if}
+                                        {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto()}<br />
+                                    {/if}                                      
+                                {/if}
+                                {/section}
+                            {/if}
+                            <div class="inmob">{$tplSearchObject->aListado[item]->inmobiliaria->getNombre()}</div>
+                        </li>
+                    </ul>
+                    <div class="accLink" style="text-align:right; padding:0px 10px;">
+                        <a href="detalles/{$tplSearchObject->aListado[item]->getIdPropiedad()}/{$tplSearchObject->aListado[item]->getParsedUrlFriendlyString()}.html" class="moreInfo">
+                            Ver Detalles
+                        </a>
+                    </div>
+                </div><!-- End .Detalle -->
+            </div><!-- End Box Gris -->
+        </li>
+    {/section}
+</ul>

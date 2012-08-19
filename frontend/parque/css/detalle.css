@@ -1,0 +1,120 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+div#detalle_titulo{
+width: 958px;
+background-color:#CCCCCC;
+text-align:left;
+font-weight:bold;
+font-size: 18px;
+text-indent:0.2em;
+line-height:30px;
+border: 1px solid #666666;
+}
+
+div#contenedor_detalle{
+line-height:30px;
+width: 100%;
+}
+
+
+div#detalle_descripcion{
+width: 300px;
+float: left;
+text-align:left;
+margin-left: 5px;
+margin-top: 5px;
+}
+
+div#detalle_descripcion ul{
+}
+
+div#detalle_descripcion li {
+list-style:square;
+list-style-position: inside;
+
+}
+
+div#detalle_galeria{
+float:right;
+margin-top:5px;
+text-align:right;
+width:480px;
+}
+
+div#detalle_galeria img{
+margin:1px;
+border: 1px solid #339966;;
+}
+
+div#detalle_disponibilidad{
+}
+
+div#detalle_mapa{
+clear:both;
+float:left;
+width: 960;
+height: 400px;
+margin-top:15px; 
+margin-bottom:15px;
+
+}
+
+
+div #detalle_mapa #mapa{
+width: 900px; 
+height:400px; 
+border: solid 1px #339966;
+}
+
+
+#consulta{
+float:left;
+clear:both;
+width:410px;
+margin-bottom:15px;
+margin-top:50px; 
+font-family:"Trebuchet MS";
+font-size: 12px;
+}
+
+#consulta form{
+}
+
+#consulta #response{
+border: solid 1px #339966;
+padding: 10px;
+}
+
+#consulta div label{
+width:400px;
+display:block;
+}
+
+#consulta input{
+background-color:#CCCCC0;
+width:250px;
+}
+
+#consulta #btnEnviarConsulta{
+width:60px;
+margin-top:8px;
+}
+
+#consulta #txtConsulta{
+width:405px;
+background-color:#CCCCC0;
+}
+
+#consulta div{
+float:left;
+clear:both;
+padding-bottom: 5px;
+}
+
+#consulta h4 {
+font-family:"Trebuchet MS";
+font-size:14px;
+}

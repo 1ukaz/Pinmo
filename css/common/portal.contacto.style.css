@@ -1,0 +1,35 @@
+/* CSS Document */
+
+.blackOverlay { position:fixed; top:0%; left:0%; width:100%; height:100%; -moz-opacity:0.7; opacity:.70; display:none;
+				background:url('../UI-Panel/images/ui-bg_diagonals-super-thick_8_000000_120x120.png'); z-index:1001; }
+.modalWrapper { position:absolute; width:400px; padding:15px; display:none;  background-color:#FFFFFF; z-index:1002;
+ 				border-top:25px solid #A31319; border-right:6px solid #A31319; border-bottom:6px solid #A31319; border-left:6px solid #A31319;}
+.modalTittle { padding:5px 0px 5px 10px; }
+.modalContent { padding:15px 15px 30px 15px; margin:5px 0px 0px 0px; }
+#mainLoader { background-color: #FFFFFF; background-image:url('../images/gen/ajax-world-s.gif'); margin: 10px 0px; padding:10px 10px 22px 70px;
+			  background-repeat: no-repeat; background-position: 10px center; font-family: 'Courier New'; font-size:12px; color:#000000; border:5px double #000000;
+			  width:90px; height:30px; position:fixed; left:50%; margin-left:-80px; z-index:1010; box-shadow:5px 5px 5px #222; -moz-box-shadow:5px 5px 5px #222; 
+			  -webkit-box-shadow:5px 5px 5px #222; filter: progid:DXImageTransform.Microsoft.Shadow(color=#222222,direction=135); }
+#textLoader { position:fixed; background-color:#A31319; color:#FFFFFF; bottom:0; right:0; padding:5px 30px 5px 40px; font-size:11px; 
+			  font-weight:bolder; display:none; height:15px; } 
+/* Content */
+#content { padding:5px 0px 0px 0px; }
+#content .ui-state-highlight { margin-bottom:15px; padding:15px 50px; font-size:90%; }
+#content .ui-state-highlight .ui-icon { float:left; }
+#content .ui-state-highlight .sh { margin:0px 5px 2px 0px; }
+#content .ui-state-highlight p { margin:5px 0; line-height:normal; text-align:center; }
+#content .ui-state-highlight p.sh { margin:5px 0; line-height:normal; text-align:left; }
+#content form { padding:20px 0px 30px 0px; background-image:url('../images/portal/fd_Contacto5b.png'); height:225px; background-repeat:no-repeat;}
+#content form input { width:250px; height:20px; padding:2px; border:1px solid #CCC; background-color:none; }
+#content form textarea { width:250px; padding:2px; border:1px solid #CCC; background-color:none; }
+#content form input.error, #content form textarea.error { background-color:#FEF1EC; border:1px dotted #CD0A0A; }
+#content form div.req { padding:0px; display:inline-block; position:relative; top:3px; color:#C00; }
+#content form .buttonPane { padding:25px 0px 0px 265px; text-align:left; }
+#content form .formRow { padding:2px; height:25px; width:65%; }
+#content form .labelDiv { width:37%; float:left; text-align:right; padding:1px 0px 0px 0px; font-weight:bold; }
+#content form .fieldDiv { width:60%; float:right; }
+#content form .formAreaRow { padding:2px; height:90px; width:65%; }
+#content form .labelArea { padding:35px 0px 0px 0px; }
+#content form .buttonSmall { width:99px; height:29px; border:none; background:url('../images/portal/fd_BotonSmall.png') 0 bottom no-repeat; 
+							 padding:0px 0px 3px 0px; font-size:13px; font-weight:900; color:#F9F9F9; }
+#content form .buttonSmall:hover { cursor:pointer; background-position:0 top; }

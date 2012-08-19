@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+	<title>:: Pinmo Reloaded ::</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css" media="screen">
+		<!--
+		@import "../../css/common/login.css";
+		-->
+    </style>
+    <link rel="stylesheet" media="screen" href="../../css/common/login.css" />
+	<script type="text/javascript" src="../../js/JQuery/jquery.js"></script>
+    <script type="text/javascript" src="../../js/common/min/login.js"></script>
+	<title>Pinmo Login - Reloadaed</title>
+</head>
+<body>
+<noscript>
+  <div class="ui-widget ui-state-error ui-corner-all noscript-container">
+  	<div class="noscript-alert">
+      <p><strong>Aviso:</strong> Su Navegador o Browser tiene Inhabilitado JavaScript.<br />
+      Para poder Ingresar y utilizar el Panel de Control es <strong>IMPRESCINDIBLE</strong> la Habilitaci&oacute;n del mismo.</p>
+    </div>
+  </div>
+</noscript>
+<div id="login" class="ui-widget ui-corner-all" />
+    <div id="titulo" class="ui-corner-all">Administraci&oacute;n </div>
+    <div class="ui-widget">
+	{if $tpl_error}
+      <div class="ui-state-error ui-corner-all" style="margin-top:20px; margin-bottom:15px; padding:0 .7em;"> 
+          <p><span class="ui-icon ui-icon-alert" style="float:left; margin-right:.3em;"></span> 
+          <strong>Aviso:</strong> { $tpl_error }</p>
+      </div>
+	{else}
+      <div class="ui-state-highlight ui-corner-all" style="margin-top:20px; margin-bottom:15px; padding:0 .7em;"> 
+          <p><span class="ui-icon ui-icon-info" style="float:left; margin-right:.3em;"></span>
+          <strong>Info:</strong> { $tpl_msg }</p>
+      </div>
+	{/if}
+    </div>
+    <form action="index.php" id="frmLogin" method="POST">
+    	<input type="hidden" name="lat_LGN" id="lat_LGN" />
+        <input type="hidden" name="lon_LGN" id="lon_LGN" />
+        <div class="filaCampo">
+            <div class="etiqueta"><label for="user_LGN">Usuario:&nbsp;</label></div>
+            <div class="campo"><input type="text" name="user_LGN" id="user_LGN" tabindex="1" /></div>
+        </div>
+
+        <div class="filaCampo">
+            <div class="etiqueta"><label for="pass_LGN">Contrase&ntilde;a:&nbsp;</label></div>
+            <div class="campo"><input type="password" name="pass_LGN" id="pass_LGN" tabindex="2" /></div>
+        </div>
+        <div class="filaCampo">
+            <p align="center">
+                <a href="javascript:void(0);" id="btnSubmit" class="theButton ui-state-default ui-priority-primary ui-corner-all" tabindex="3">
+                    <span class="ui-icon ui-icon-locked"></span>Ingresar
+                </a>
+            </p>
+        </div>
+    </form>
+</div>
+</body>
+</html>

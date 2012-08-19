@@ -1,0 +1,74 @@
+/* Search */
+
+#search { height:305px; margin:0px; background:url('../images/portal/fd_Buscador-5.png') 0 0 repeat-x; padding:15px 0px 0px; }
+#search form ul.searchFields { /*margin:0px 0px 0px 10px;*/ padding:10px 0px 10px 20px; float:left; }
+#search form ul.searchFields select { height:23px; padding:2px 2px 2px 1px; border:1px solid #E4E4E4; width:240px; }
+#search form ul.searchFields li { /*width:100%;*/ padding:4px 0px; }
+#search fieldset { margin:0px; padding:0px; border:none; }
+#search label { width:120px; float:left; text-align:right; padding:3px 2px 2px 0; display:inline !important; vertical-align:middle; }
+#search label.tall { padding:30px 2px 2px 0; }
+#search-text { width:170px; padding:6px 5px 2px 5px; border:none; background:#FFFFFF; text-transform:lowercase; font: normal 11px Arial, Helvetica, sans-serif; color: #464032; }
+#search-submit { width:132px; height:41px; border:none; background:url('../images/portal/fd_BotonBig-3.png') 0 bottom no-repeat; padding:0px 0px 2px 0px; font-size:16px; font-weight:900; color:#F9F9F9; }
+#search-submit:hover { cursor:pointer; background-position:0 top; }
+
+/* Content */
+
+#content { padding: 20px 0px 0px; }
+
+/* Slider Mas Vistas */
+
+.vistasWrapper { padding:15px 30px 0px 30px; float:right; position:relative; width:490px; }
+#lasVistas { height:215px; overflow:hidden; padding:5px 0px; }
+#lasVistas li { list-style:none outside none; width:470px; padding:0px 5px; }
+#lasVistas li .infoText { cursor:pointer; float:right; height:215px; padding:0px 0px 0px 8px; position:relative; width:180px; background:url("../images/slider/fd_Info.png") repeat scroll 0 0 transparent; }
+#lasVistas li .theImg { padding:6px 0px 0px 0px; height:205px; width:270px; float:left; text-align:center; background:url("../images/slider/fd_Info.png") repeat scroll 0 0 transparent; }
+#lasVistas li .theImg .outerFrame { background-color:#FFFFFF; border:2px solid #9D151A; left:5px; position:relative; width:255px; }
+#lasVistas li .theImg .outerFrame .innerframe { left:5px; overflow:hidden; padding:0 0 7px; position:relative; top:5px; width:245px; }
+#lasVistas li .theImg .outerFrame .innerframe img { border:none; }
+#lasVistas li p { color:#444444; font-size:13px; line-height:14px; margin:0; padding:25px 0 0; }
+#lasVistas li p strong { color:#999999; }
+#lasVistas h4 { color:#9D151A; padding:5px 0 15px 0px; font-size:16px; font-weight:bold; line-height:16px; }
+#lasVistas a:hover { text-decoration:none; }
+#lasVistas a:hover h4{ text-decoration:underline; }
+#lasVistas .infoText h5 { font-size:18px; font-weight:bold; padding:5px; }
+#lasVistas .infoText span { color:#333333; background-color:#d3d1c4; display:inline-block; padding:5px 30px; font-size:12px; font-weight:bold; margin:10px 0 0 0; }
+.vistasWrapper .prev { left:-6px; outline:0 none; position:absolute; top:95px; }
+.vistasWrapper .next { outline:0 none; position:absolute; right:0px; top:95px; }
+.bx_pager { padding-left:160px; padding-top:15px; }
+.bx_pager a { color:#FFFFFF; float:left; font-size:11px; height:17px; margin-right:6px; padding:4px 0 0 7px; width:14px; background:url("../images/slider/bg_pager3.png") no-repeat scroll 0 -21px transparent; cursor:pointer; }
+.bx_pager a:hover, .bx_pager a.active { background-position:0 0; text-decoration:none; }
+.auto_controls { bottom:1px; left:325px; position:absolute; }
+.auto_controls a { font-size:11px; outline:0 none; padding:2px; }
+.auto_controls a:hover { text-decoration:underline; }
+a.prev img, a.next img { border:none !important; }
+
+/* Destacadas */
+
+.lasDestacadas { margin:15px 0 10px; padding:0px; }
+.lasDestacadas h3 { color:#9D151A; padding:5px 0 5px 20px; font-size:16px; font-weight:bold; line-height:16px; }
+.lasDestacadas .desItems { padding:0px 0px 0px 20px; }
+.lasDestacadas .desItems .BtnLeft { background:url("../images/portal/bt_DestLeft.png") no-repeat scroll 0 0 transparent; float:left; height:16px; margin:59px 3px 0 5px; visibility:visible; width:8px; }
+.lasDestacadas .desItems .BtnLeft:hover { background-image:url("../images/portal/bt_DestLeftHover.png"); }
+.lasDestacadas .desItems .BtnRight { background:url("../images/portal/bt_DestRight.png") no-repeat scroll 0 0 transparent; float:left; height:16px; margin:59px 3px 0 5px; width:8px; }
+.lasDestacadas .desItems .BtnRight:hover { background-image:url("../images/portal/bt_DestRightHover.png"); }
+.lasDestacadas .desItems .desItem { float:left; margin:11px 1px 0 3px; width:222px; }
+.lasDestacadas .desItems .desItem a { text-decoration:none; }
+.lasDestacadas .desItems .desItem .desBox { background:url("../images/portal/fd_DesBox.png") repeat-x scroll center bottom transparent; border:1px solid #E4E4E4; cursor:pointer; height:101px; padding:8px 0 14px 6px; position:relative; width:214px; }
+.lasDestacadas .desItems .desItem .desBox .CR { background:url("../images/portal/rc_BorderLight.png") no-repeat scroll 0 0 transparent; font-size:0; height:7px; position:absolute; width:7px; }
+.lasDestacadas .desItems .desItem .desBox .Tr { background-position:right top; right:-1px; top:-1px; }
+.lasDestacadas .desItems .desItem .desBox .Tl { background-position:left top; left:-1px; top:-1px; }
+.lasDestacadas .desItems .desItem .desBox .Br { background-position:right bottom; bottom:-1px; right:-1px; }
+.lasDestacadas .desItems .desItem .desBox .Bl { background-position:left bottom; bottom:-1px; left:-1px; }
+.lasDestacadas .desItems .desItem .desBox .FdNew { background:url("../images/portal/fd_New3.png") no-repeat scroll 0 0 transparent; height:70px; position:absolute; right:-4px; top:-5px; width:71px; }
+.lasDestacadas .desItems .desItem .desBox h4 { color:#9D151A; font-size:14px; font-weight:bold; padding-left:4px; }
+* html .lasDestacadas .desItems .desItem .desBox h4 { padding-bottom:6px; }
+.lasDestacadas .desItems .desItem .desBox:hover h4 { text-decoration:underline; }
+.lasDestacadas .desItems .desItem .desBox .BoxDatos { height:92px; margin:7px 0 0; overflow:hidden; padding-left:4px; width:212px; }
+* html .lasDestacadas .desItems .desItem .desBox .infoBox { height:81px; margin:0; width:212px; }
+.lasDestacadas .desItems .desItem .desBox .infoBox .desThumb { float:left; font-size:0; height:66px; margin:0 9px 0 0; padding:2px; width:88px; }
+.lasDestacadas .desItems .desItem .desBox .infoBox .infoText { float:left; width:99px; }
+.lasDestacadas .desItems .desItem .desBox .infoBox .infoText p { color:#333333; font-size:11px; line-height:12px; }
+.lasDestacadas .desItems .desItem .BoxFt { background:url("../images/portal/fd_SombraDivCentro-230.png") no-repeat scroll 0 0 transparent; height:17px; width:223px; }
+.lasDestacadas .desItems .desItem .desBox .infoBox .infoText h5 { color:#333333; font:bold 14px Arial,Helvetica,sans-serif; }
+.lasDestacadas .desItems .desItem .desBox .infoBox .infoText strong { color:#737373; font-weight:normal; line-height:13px; }
+.lasDestacadas .desItems .desItem .desBox .infoBox .infoText span { background:url("../images/portal/fd_OperSpan.png") no-repeat scroll 0 0 transparent; color:#333333; display:block; font-size:11px; height:14px; margin:2px 0; text-align:center; width:80px; }

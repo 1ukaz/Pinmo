@@ -1,0 +1,55 @@
+<head>
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#Switcher li a")
+		.css( {backgroundPosition: "-20px 35px"} )
+		.hover(
+			function() {
+				if (!$(this).hasClass("selected"))
+					$(this).stop().animate({backgroundPosition:"(-20px 94px)"}, {duration:500}).css({"font-style":"italic"});
+			}, 
+		 	function() {
+				if (!$(this).hasClass("selected"))
+					$(this).css({"font-style":"normal"}).stop().animate({backgroundPosition:"(40px 35px)"}, {duration:250, complete:function(){
+						$(this).css({backgroundPosition: "-20px 35px"})
+				}});
+				else
+					$(this).css({"font-style":"normal"});
+			}
+		)
+		.click(function(ev) { 
+			$("#formContainerABM .formLayer").hide();
+			$("#Switcher li a").css({backgroundPosition: "-20px 35px"}).removeClass("selected");
+			var thisTab = $("#Switcher li a").index($(this));
+			$("#Switcher li a:eq("+thisTab+")").addClass("selected").css({backgroundPosition: "-20px 94px","font-style":"normal"});
+			$("#formContainerABM .formLayer:eq("+thisTab+")").show();
+			ev.preventDefault();
+		});
+	$("#Switcher li a:eq(0)").click();
+	$.getScript("../../js/common/min/formPropiedad.js");
+});
+</script>
+{/literal}
+</head>
+<body>
+<div class="containerDiv">
+    <ul id="Switcher">
+        <li class="formMenu selected" id="1"><a href="#">Localizaci&oacute;n</a></li>
+        <li class="formMenu" id="2"><a href="#">Espec&iacute;ficas</a></li>
+        <li class="formMenu" id="3"><a href="#">Publicaci&oacute;n</a></li>
+        <li class="formMenu" id="4"><a href="#">Caracter&iacute;sticas</a></li>
+        <li class="formMenu" id="5"><a href="#">Ambientes</a></li>
+    </ul>
+</div>
+<div id="formContainerABM" class="containerDiv">
+	<form id="frmPropiedad" method="POST" action="{$tplAction}">
+    	<input type="hidden" name="frmToken" id="frmToken" value="{$tplToken}" />
+		<div class="formLayer" id="formStep_1">{include file="../../includes/infoFormContentLayer-1.html"}</div>
+		<div class="formLayer" id="formStep_2">{include file="../../includes/infoFormContentLayer-2.html"}</div>
+		<div class="formLayer" id="formStep_3">{include file="../../includes/infoFormContentLayer-3.html"}</div>
+		<div class="formLayer" id="formStep_4">{include file="../../includes/infoFormContentLayer-4.html"}</div>
+        <div class="formLayer" id="formStep_5">{include file="../../includes/infoFormContentLayer-5.html"}</div>
+	</form>
+</div>
+</body>

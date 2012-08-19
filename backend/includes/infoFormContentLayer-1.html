@@ -1,0 +1,58 @@
+<fieldset><legend>Datos de Localizaci&oacute;n del Inmueble</legend>
+  <div class="innerContainerDiv">
+        <ul>
+         	<li>
+                <label for="txtCodRef_ABM">C&oacute;digo Ref.Prop.:</label>
+                <input name="txtCodRef_ABM" id="txtCodRef_ABM" type="text" class="std ignore" value="{$tplProp->getCodigoReferencia()}" tabindex="12" />
+         	</li>                                     
+         	<li>
+            <label for="cboTipoPropiedad_ABM"><span class="req">*</span>Tipo de Propiedad:</label>
+                <select class="std required" id="cboTipoPropiedad_ABM" name="cboTipoPropiedad_ABM" tabindex="13" >
+                    {html_options values=$tplCboTisPropABM.values output=$tplCboTisPropABM.output selected=$tplProp->getIdTipoPropiedad()}
+                </select>
+         	</li>
+         	<li>
+            <label for="cboProvincia_ABM"><span class="req">*</span>Provincia:</label>
+                <select class="std required" id="cboProvincia_ABM" name="cboProvincia_ABM" tabindex="14" >
+                    {html_options values=$tplCboProvsABM.values output=$tplCboProvsABM.output selected=$tplProp->ubicacion->getIdProvincia()}
+                </select>
+         	</li>
+         	<li>
+            <label for="cboLocalidad_ABM"><span class="req">*</span>Localidad:</label>
+                <select class="std required" id="cboLocalidad_ABM" name="cboLocalidad_ABM" tabindex="15">
+                    {html_options values=$tplCboLocsABM.values output=$tplCboLocsABM.output selected=$tplProp->ubicacion->getIdLocalidad()}
+                </select>
+         	 </li>
+             <li>
+                <label for="txtCalle_ABM"><span class="req">*</span>Calle:</label>
+                <input name="txtCalle_ABM" id="txtCalle_ABM" type="text" class="std required" value="{$tplProp->ubicacion->getCalle()}" tabindex="16" />		
+             </li>
+             <li>
+                <label for="txtNumero_ABM"><span class="req">*</span>N&uacute;mero:</label>
+                <input name="txtNumero_ABM" id="txtNumero_ABM" type="text" tabindex="17" value="{$tplProp->ubicacion->getNumero()}" class="std required ent" />
+             </li>
+             <li>
+                <label for="txtPiso_ABM">Piso:</label>
+                <input name="txtPiso_ABM" id="txtPiso_ABM" type="text" tabindex="18" value="{$tplProp->ubicacion->getPiso()}" class="std ent" />
+             </li>
+             <li>
+                <label for="txtDepartamento_ABM">Departamento:</label>
+                <input name="txtDepartamento_ABM" id="txtDepartamento_ABM" type="text" tabindex="19" value="{$tplProp->ubicacion->getDepartamento()}" class="std" />
+             </li>                                        
+            <li>
+                <label for="txtEntreCalle1_ABM">Entre Calle 1:</label>
+                <input name="txtEntreCalle1_ABM" type="text" tabindex="20" value="{$tplProp->ubicacion->getEntreCalle1()}" class="std" />
+            </li>                   
+            <li>
+                <label for="txtEntreCalle2_ABM">Entre calle 2:</label>
+                <input name="txtEntreCalle2_ABM" type="text" tabindex="21" value="{$tplProp->ubicacion->getEntreCalle2()}" class="std" />
+            </li> 
+        </ul>
+        <div id="canvasMap"><p>Para Visualizar la Ubicaci&oacute;n en el Mapa<br />Toda la Informacion de la Direcci&oacute;n debe ser completada</p></div>
+        <div style="float:right; padding:5px 150px 0px 0px;">
+            <label style="width:auto; padding:0px;" for="chkDeAcuerdo">
+            <input type="checkbox" id="chkDeAcuerdo_ABM" name="chkDeAcuerdo_ABM" value="1" tabindex="22" class="accept" {if $tplEdFlag} checked="checked" {/if} />
+            Verifico que la Direcci&oacute;n ingresada es Correcta<span class="req" style="padding-left:5px;">*</span></label>
+        </div>
+  </div>        
+</fieldset>

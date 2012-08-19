@@ -1,0 +1,76 @@
+<script type="text/javascript" language="javascript" src="../../js/common/min/buscadorGlobal.js"></script>
+<div class="searchForm">
+	<form id="frmBusquedaGlobal" method="POST" action="./buscadorGlobal.php?acc=search">
+		<div id="formContainer">
+			<fieldset><legend>Seleccione Criterios de B&uacute;squeda</legend>
+        		<ul style="padding-top:10px;">
+                     <li>
+                        <label for="cboInmobiliaria_G">Inmobiliaria:</label>
+                        <select class="std ignore" id="cboInmobiliaria_G" name="cboInmobiliaria_G" tabindex="1">
+                        	{html_options values=$tplCboInmobG.values output=$tplCboInmobG.output selected=0}
+                        </select>
+                     </li>
+                     <li> 
+                        <label for="cboTipoPropiedad_G">Tipo de Propiedad:</label>
+                        <select class="std ignore" id="cboTipoPropiedad_G" name="cboTipoPropiedad_G" tabindex="2">
+                        	{html_options values=$tplCboTisPropG.values output=$tplCboTisPropG.output selected=0}
+                        </select>
+                     </li>    
+                     <li>
+                        <label for="cboProvincia_G">Provincia:</label>
+                        <select class="std ignore" id="cboProvincia_G" name="cboProvincia_G" tabindex="3">
+                        	{html_options values=$tplCboProvsG.values output=$tplCboProvsG.output selected=0}
+                        </select>
+                     </li>                                                  
+                     <li>
+                        <label for="cboLocalidad_G">Localidad:</label>
+                        <select class="std ignore" id="cboLocalidad_G" name="cboLocalidad_G" tabindex="4"></select>
+                     </li>
+                     <li>
+                        <label for="txtCalle_G">Calle:</label>
+                        <input name="txtCalle_G" id="txtCalle_G" type="text" class="std ignore" tabindex="5" maxlength="45" />		
+                     </li>                
+                     <li>
+                        <label for="txtNumero_G">N&uacute;mero:</label>
+                        <input name="txtNumero_G" id="txtNumero_G" type="text" class="std" tabindex="6" maxlength="10" />	 
+                     </li>                     
+        		</ul>   
+        		<ul style="padding-bottom:15px;">
+                     <li>
+                        <label for="txtCodigo_G">C&oacute;digo Ref.:</label>
+                        <input name="txtCodigoReferencia_G" id="txtCodigoReferencia_G" type="text" class="std ignore" tabindex="7" maxlength="20" />
+                     </li>
+                     <li>
+                        <label for="txtAntiguedad_G">Antiguedad (hasta):</label>			
+                        <input name="txtAntiguedad_G" id="txtAntiguedad_G"  type="text" tabindex="8" maxlength="10" class="std" />
+                     </li>                    
+                     <li>
+                        <label for="txtAmbientes_G">Ambientes (desde):</label>
+                        <input name="txtAmbientes_G" id="txtAmbientes_G" type="text" tabindex="9" maxlength="10" class="std" />
+                     </li>
+                     <li>
+                        <label for="txtSuperficieTotal_G">Superficie (desde):</label>
+                        <input name="txtSuperficieTotal_G" id="txtSuperficieTotal_G" type="text" tabindex="10" maxlength="10" class="std" />                     
+                     </li>
+                     <li>
+                        <label for="txtPrecio_G">Precio (hasta):</label>			
+                        <input name="txtPrecio_G" id="txtPrecio_G"  type="text" tabindex="11" maxlength="15" class="std" />
+                     </li>
+                     <li>
+                        <label for="cboTipoPublicacion_G">Tipo de Publicacion:</label>
+                        <select class="std ignore" id="cboTipoPublicacion_G" name="cboTipoPublicacion_G" tabindex="12">
+                        	{html_options values=$tplCboTisPubsG.values output=$tplCboTisPubsG.output selected=0}
+                        </select>                               
+                     </li>                                                                               
+        		</ul>
+			</fieldset>
+		</div>
+        <div class="filaBoton">
+        	<p align="right">
+            	<a href="buscadorGlobal.php?acc=search&o=1" id="btnSubmitGlobal" class="theButton ui-state-default ui-priority-primary ui-corner-all" title="Haciendo Click en este Boton, se realizará la Búsqueda y se mostrarán los Resultados"><span class="ui-icon ui-icon-search"></span>Buscar</a>
+          		<a href="buscadorGlobal.php" id="btnCancelGlobal" class="theButton ui-state-default ui-corner-all" title="Haciendo Click en este Boton, Re-establece los Parametros de la Búsqueda, y Limpia los Resultados"><span class="ui-icon ui-icon-refresh"></span>Limpiar</a>
+            </p>
+        </div>
+	</form>
+</div>
+<div id="searchResultsGlobal" class="searchResults"></div>

@@ -1,0 +1,54 @@
+<fieldset><legend>Agregar/Quitar Ambientes/Habitaciones</legend>
+  <div class="innerContainerDiv">
+    <table id="roomsTable" border="0" cellpadding="7" cellspacing="0" align="center" width="600px">
+        <thead>
+            <tr>
+                <th align="left">Descripci&oacute;n</th>
+                <th>Ancho</th>
+                <th>Largo</th>
+                <th>Acci&oacute;n</th>
+            </tr>
+        </thead>
+        <tbody>
+    {assign var = tplLastIndex value = 0}
+    {if count($tplProp->getAmbientes()) gt 0}
+        {foreach name=ambientes item=ambiente from=$tplProp->getAmbientes()}
+        	<tr id="{$smarty.foreach.ambientes.index}" class="{cycle name="roomsCycle" values="pairRow,unpairRow"}">
+            	<td align="left">
+                	<select name="theAmbientes_ABM[{$smarty.foreach.ambientes.index}][t]" id="theAmbientes_ABM[{$smarty.foreach.ambientes.index}][t]" tabindex="" >
+                    	{html_options values=$tplCboTisAmbABM.values output=$tplCboTisAmbABM.output selected=$ambiente->getIdTipoAmbiente()}
+                    </select>
+                </td>
+                <td>
+                	<input name="theAmbientes_ABM[{$smarty.foreach.ambientes.index}][a]" type="text" id="theAmbientes_ABM[{$smarty.foreach.ambientes.index}][a]" class="short"  tabindex="" value="{$ambiente->getAncho()}" />
+                </td>
+                <td>
+                	<input name="theAmbientes_ABM[{$smarty.foreach.ambientes.index}][l]" type="text" id="theAmbientes_ABM[{$smarty.foreach.ambientes.index}][l]" class="short"  tabindex="" value="{$ambiente->getLargo()}" />
+                </td>
+                <td>
+                	<a href="javascript:void(0);" class="theButton delButton ui-state-default ui-corner-all"><span class="ui-icon ui-icon-minus"></span>Eliminar</a>
+                </td>
+            </tr>
+        {/foreach}
+        {assign var = tplLastIndex value = $smarty.foreach.ambientes.index+1}
+    {/if}
+        	<tr id="{$tplLastIndex}" class="{cycle name="roomsCycle" values="pairRow,unpairRow"}">
+            	<td align="left">
+                	<select name="theAmbientes_ABM[{$tplLastIndex}][t]" id="theAmbientes_ABM[{$tplLastIndex}][t]" tabindex="" >
+                    	{html_options values=$tplCboTisAmbABM.values output=$tplCboTisAmbABM.output selected=0}
+                    </select>
+                </td>
+                <td>
+                	<input name="theAmbientes_ABM[{$tplLastIndex}][a]" type="text" id="theAmbientes_ABM[{$tplLastIndex}][a]"  tabindex="" class="short" />
+                </td>
+                <td>
+                	<input name="theAmbientes_ABM[{$tplLastIndex}][l]" type="text" id="theAmbientes_ABM[{$tplLastIndex}][l]"  tabindex="" class="short" />
+                </td>
+                <td>
+                    <a href="javascript:void(0);" id="btnAddAmbiente" class="theButton ui-state-default ui-corner-all"><span class="ui-icon ui-icon-plus"></span>Agregar</a>
+                </td>
+            </tr>
+		</tbody>
+    </table>
+  </div>
+</fieldset>

@@ -1,0 +1,37 @@
+<table id="resTable" border="0" cellpadding="7" cellspacing="0" align="center" width="600">
+    <thead>
+        <tr>
+            <th>Desde</th>
+            <th>Hasta</th>
+            <th>Notas</th>
+            <th>Acci&oacute;n</th>
+        </tr>
+    </thead>
+    <tbody>
+    {if count($tplProp->getReservas()) gt 0}
+        {foreach name=reservas item=reserva from=$tplProp->getReservas()}
+            {if $reserva->getMarca() == false}
+                <tr height="40" class="{cycle name="resCycle" values="pairRow,unpairRow"}">
+                    <td>{$reserva->getFechaDesde()}</td>
+                    <td>{$reserva->getFechaHasta()}</td>
+                    <td>{$reserva->getNotas()}</td>
+                    <td>
+                        <a href="./propiedadDisp.php?acc=de&po={$smarty.foreach.reservas.index}" class="delButton theButton ui-state-default ui-corner-all">
+                            <span class="ui-icon ui-icon-minus"></span>Eliminar
+                        </a>
+                    </td>
+                </tr>
+            {/if}
+        {/foreach}
+    {else}
+            <tr>
+                <td colspan="4">
+                    <div class="ui-state-error ui-corner-all" style="margin-top:20px; margin-bottom:15px; padding:0 .7em;"> 
+                        <p><span class="ui-icon ui-icon-alert" style="float:left; margin-right:.3em;"></span> 
+                        <strong>Aviso:</strong> No Hay Reservas a partir de HOY, Almacenadas para esta Propiedad</p>
+                    </div>
+                </td>
+            </tr>
+    {/if}
+    </tbody>
+</table>

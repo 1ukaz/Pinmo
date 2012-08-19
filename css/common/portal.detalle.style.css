@@ -1,0 +1,54 @@
+/* CSS Document */
+
+#contactLink { float:right; font-size:103%; font-weight:bold; margin:2px 0px 0px 0px; color:#F9F9F9; background-color:#9D151A; padding:3px 5px; }
+#contactLink:hover { color:#9D151A; background-color:#F9F9F9; text-decoration:underline; }
+ul.details { margin:0 0 0 20px;}
+ul.details li { list-style-image:url("../images/portal/list-arrow.png"); line-height:180%; }
+.blackOverlay { position:fixed; top:0%; left:0%; width:100%; height:100%; -moz-opacity:0.7; opacity:.70; display:none; background:url('../UI-Panel/images/ui-bg_diagonals-super-thick_8_000000_120x120.png'); z-index:1001; }
+.modalWrapper { position:fixed; width:400px; padding:15px; display:none; background-color:#FFFFFF; z-index:1002; left:50%; margin-left:-221px; height:320px; border-top:25px solid #A31319; border-right:6px solid #A31319; border-bottom:6px solid #A31319; border-left:6px solid #A31319; }
+.modalTittle { padding:5px 0px 5px 10px; }
+.modalContent { padding:15px 15px 30px 15px; margin:5px 0px 0px 0px; }
+#mainLoader { background-color:#FFFFFF; background-image:url('../images/gen/ajax-atom-s.gif'); margin:10px 0px; padding:10px 10px 22px 70px; background-repeat:no-repeat; background-position:10px center; font-family:'Courier New'; font-size:12px; color:#000000; border:5px double #000000; width:90px; height:30px; position:fixed; left:50%; margin-left:-80px; z-index:1010; box-shadow:5px 5px 5px #222; -moz-box-shadow:5px 5px 5px #222; -webkit-box-shadow:5px 5px 5px #222; filter:progid:DXImageTransform.Microsoft.Shadow(color=#222222,direction=135); }
+#textLoader { position:fixed; background-color:#A31319; color:#FFFFFF; bottom:0; right:0; padding:5px 30px 5px 40px; font-size:11px; font-weight:bolder; display:none; height:15px; }
+
+.topRight { width:461px; height:267px; border:1px solid #E4E4E4; margin:6px 0px 0px 0px; background-color:#FDFDE8; float:right; color:#AAA; font-size:10px; }
+.topRight p { font-style:italic; margin:125px 0px 0px 0px; }
+.topLeft { float:left; width:455px; border-right:1px dotted #CCCCCC; padding:5px 10px 0px 0px; }
+.topLeft .pubs { padding:5px 0px 0px 5px; height:120px; background-color:#F0F0F0; border:1px solid #CCCCCC; }
+.topLeft .noCarousel .carouselReplace { margin:0 0 20px 0; padding:10px 0 0; position:relative; height:133px; }
+.topLeft .noCarousel .carouselReplace .jCarouselLiteEmpty { background-color:#F0F0F0; position:relative; padding:10px; width:435px; text-align:center; border:1px solid #CCCCCC; }
+.leftPane { width:33%; float:left; }
+.centerPane { width:32%; float:left; border-left:1px dotted #CCCCCC; border-right:1px dotted #CCCCCC; padding-left:5px; min-height:300px; }
+.rightPane { width:33%; float:left; padding-left:5px; }
+.bottomPane { /*border-top:1px dotted #E4E4E4; border-bottom:1px dotted #E4E4E4;*/ margin:0px 0px 10px 0px; min-height:150px; /*padding:5px 0px 0px;*/ }
+/*.topPane { height:80px; width:940px; padding:10px 0px 10px 10px; margin:0px 0px 10px 0px; background: url('../images/portal/fd_Publicaciones-5.png') 0 0 no-repeat; }*/
+.middlePane { padding:10px 0px; }
+
+h4 { font-weight:bolder; padding:10px 0px 20px 5px; color:#9D151A;}
+h3.pageTittle { clear:left; margin:0px 0px 10px 0px; float:left; width:85%; }
+
+.calWrapper { padding:0px 0px 0px 150px; margin:0px 0px 55px 0px; font-size:90%; }
+.calNotes { padding:10px 0px 0px 20px; letter-spacing:1px; }
+.calNotes span.ui-icon { float:left; margin:0px 5px 0px 0px; }
+
+#modalWrapper .ui-state-highlight { margin-bottom:5px; padding:0 50px; font-size:79%; }
+#modalWrapper .ui-state-highlight .ui-icon { float:left; margin:5px 2px 0px 0px; }
+#modalWrapper .ui-state-highlight p { margin:5px 0; line-height:normal; text-align:center; }
+#modalWrapper form { padding:5px 0px 0px 0px; }
+#modalWrapper form input { width:250px; height:20px; padding:2px; border:1px solid #CCC; background-color:none; }
+#modalWrapper form textarea { width:250px; padding:2px; border:1px solid #CCC; background-color:none; }
+#modalWrapper form input.error, #modalWrapper form textarea.error { background-color:#FEF1EC; border:1px dotted #CD0A0A; }
+#modalWrapper form div.req { padding:0px; display:inline-block; position:relative; top:3px; color:#C00; }
+#modalWrapper form .buttonPane { padding:10px 0px 0px 0px; text-align:center; }
+#modalWrapper form .formRow { padding:2px; height:25px; }
+#modalWrapper form .labelDiv { width:24%; float:left; text-align:right; padding:1px 0px 0px 0px; }
+#modalWrapper form .fieldDiv { width:74%; float:right; }
+#modalWrapper form .formAreaRow { padding:2px; height:90px; }
+#modalWrapper form .labelArea { padding:35px 0px 0px 0px; }
+#modalWrapper form .buttonSend { width:99px; height:29px; border:none; background:url('../images/portal/fd_BotonSmall.png') 0 bottom no-repeat; padding:0px; }
+#modalWrapper form .buttonSend:hover { cursor:pointer; background-position:0 top; }
+#modalWrapper form .buttonOut { width:99px; height:29px;	border:none; background:url('../images/portal/fd_BotonSmall.png') 0 bottom no-repeat; padding:0px; }
+#modalWrapper form .buttonOut:hover { cursor:pointer; background-position:0 top; }
+#modalWrapper form .buttonSmall { width:99px; height:29px; border:none; background:url('../images/portal/fd_BotonSmall.png') 0 bottom no-repeat; 
+								  padding:0px 0px 3px 0px; font-size:13px; font-weight:900; color:#F9F9F9; }
+#modalWrapper form .buttonSmall:hover { cursor:pointer; background-position:0 top; }

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>:: Pinmo &copy; - Portal Reloaded ::</title>
+<style type="text/css" media="all">
+<!--
+@import url("../../css/common/portal.common.style.css");
+@import url("../../css/common/portal.detalle.style.css");
+-->
+</style>
+<link href="../../css/common/portal.common.style.css" rel="stylesheet" type="text/css" />
+<link href="../../css/common/portal.detalle.style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="../../js/JQuery/jquery.js?PID={$tplPid}"></script>
+<script type="text/javascript" src="../../js/JQuery/jquery-ui-portal.js"></script>
+<script type="text/javascript" src="../../js/JQuery/jquery.portal.js"></script>
+<script type="text/javascript" src="../../js/JQuery/ui.datepicker-es.js"></script>
+<script type="text/javascript" src="../../js/common/min/utils.js"></script>
+<script type="text/javascript" src="../../js/common/min/maps.utils.js"></script>
+<script type="text/javascript" src="../../js/common/min/detalle.js"></script>
+</head>
+<body>
+<div id="textLoader" class="ui-corner-left">Cargando ...</div>
+<div id="mainLoader"><br />Cargando ...</div>
+<div id="overLay" class="blackOverlay"></div>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="index.php"></a></h1>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a href="../../index.php">Buscar</a></li>
+			<li><a href="../../consulta.php?acc=co">Contacto</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+    {if $tplProp->getIdPropiedad()}
+    	<div class="locationInfo">
+        	<a href="../../index.php">Pinmo</a> <img src="../../css/images/portal/r_Arrow.png" /> 
+            <a href="javascript:void(0);" onclick="javascript:history.go(-1);">Resultados de la Búsqueda</a> 
+            <img src="../../css/images/portal/r_Arrow.png" /> {$tplProp->getParsedUrlFriendlyString()|replace:"-":" "|ucwords}
+        </div>
+		<div id="content">
+        	<h3 class="pageTittle">
+            	{$tplProp->getTipoPropiedad()} en {$tplProp->ubicacion->getCalle()} al {$tplProp->ubicacion->getNumero(1)} &bull;
+                {$tplProp->ubicacion->getNomLocalidad()} &bull; {$tplProp->ubicacion->getNomProvincia()}
+            </h3> 
+            <a href="javascript:void(0);" id="contactLink">Pregunta al Vendedor</a>
+            
+            <div class="topLeft">
+                <div class="pubs ui-corner-all">
+                    <h4>LA PROPIEDAD ESTA DISPONIBLE PARA LAS SIGUIENTES OPERACIONES</h4>
+                    {if count($tplProp->getPublicaciones()) gt 0}
+                        <ul class="details" style="font-size:13px;">
+                        {section name=publicacion loop=$tplProp->getPublicaciones()}
+                            {if $tplProp->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 7}
+                                <li>
+                                    <strong>{$tplProp->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true}</strong>
+                                    <img src="../../css/images/portal/r_Arrow.png" />
+                                    <strong>
+                                    {if is_numeric($tplProp->aPublicaciones[publicacion]->getMonto()) && $tplProp->aPublicaciones[publicacion]->getMonto() > 0}
+                                        {$tplProp->aPublicaciones[publicacion]->getMoneda()}&nbsp;{$tplProp->aPublicaciones[publicacion]->getMonto()}
+                                    {else}
+                                        {$tplProp->aPublicaciones[publicacion]->getMonto()}
+                                    {/if}
+                                    </strong>
+                                </li>
+                            {/if}
+                        {/section}
+                        </ul>
+                    {/if}
+                </div>            
+                {if $tplProp->getImagenes()}
+                    <div id="jCarouselLite">
+                    <div class="carousel main">
+                        <a href="javascript:void(0)" class="prev ui-corner-left"></a>
+                        <div class="jCarouselLite">
+                            <ul>
+                            {foreach name=images item=image from=$tplProp->getImagenes()}
+                                <li>
+                                    <a href="{$image->getImgFullPath()}" rel="lb[p_{$tplProp->getIdPropiedad()}]" title="{$image->getDescripcion()}">
+                                        <img id="thb_{$image->getIdImagen()}" title="{$image->getDescripcion()}" alt="{$image->getDescripcion()}" src="{$image->getThumbFullPath()}" />
+                                    </a>                
+                                </li>
+                            {/foreach}
+                            </ul>
+                        </div>
+                        <a href="javascript:void(0)" class="next ui-corner-right"></a>
+                        <div class="clearfull"></div>   
+                    </div>
+                    </div> 
+                {else}
+                    <div class="noCarousel">
+                        <div class="carouselReplace">
+                            <div class="jCarouselLiteEmpty ui-corner-all">
+                                <img src="../../pictures/no-image.png" height="110px" />
+                            </div>
+                        </div>
+                    </div>          
+                {/if}
+            </div>
+            
+            <div id="theMap" class="topRight">
+            	<p align="center">Si no ve el Mapa; NO se pudo Geolocalizar la Propiedad</p>
+            </div>
+			
+			<div class="clearfull"></div>
+                        	            
+			<div class="middlePane">
+            	<div class="leftPane">
+                    <h4>INFORMACI&Oacute;N GENERAL</h4>
+                    <ul class="details">
+                
+                        {if $tplProp->getCodigoReferencia() neq ''}
+                            <li><strong>Ref.: </strong>{$tplProp->getCodigoReferencia()}</li>
+                        {/if}
+                        
+                        {if $tplProp->getTipoPropiedad() neq ''}
+                            <li><strong>Tipo: </strong>{$tplProp->getTipoPropiedad()}</li>
+                        {/if}
+                    
+                        {if $tplProp->ubicacion->getCalle() neq ''}
+                            <li><strong>Domicilio: </strong>{$tplProp->ubicacion->getCalle()} al {$tplProp->ubicacion->getNumero(1)}</li>
+                        {/if}
+                        
+                        {if $tplProp->ubicacion->getNomLocalidad() neq ''}
+                            <li><strong>Localidad: </strong> {$tplProp->ubicacion->getNomLocalidad()}</li>
+                        {/if}
+                    
+                        {if $tplProp->ubicacion->getNomProvincia() neq ''}
+                            <li><strong>Provincia: </strong>{$tplProp->ubicacion->getNomProvincia()}</li>
+                        {/if}
+                    
+                        {if $tplProp->ubicacion->getPiso() neq ''}
+                            <li><strong>Piso: </strong>{$tplProp->ubicacion->getPiso(1)}</li>
+                        {/if}
+                    
+                        {if $tplProp->ubicacion->getEntreCalle1() neq '' && $tplProp->ubicacion->getEntreCalle2() neq ''}
+                            <li><strong>Entre calles: </strong>{$tplProp->ubicacion->getEntreCalle1()} y {$tplProp->ubicacion->getEntreCalle2()}</li>
+                        {/if}
+                        
+                        {if $tplProp->getCantAmbientes() gt 0}
+                            <li><strong>Ambientes: </strong>{$tplProp->getCantAmbientes()}</li>
+                        {/if}
+                    
+                        {if $tplProp->getAntiguedad() neq ''}
+                            {if $tplProp->getAntiguedad() != 'A Estrenar'}
+                                <li><strong>Antiguedad: </strong>{$tplProp->getAntiguedad()} A&ntilde;os</li>
+                            {else}
+                                <li><strong>Antiguedad: </strong>{$tplProp->getAntiguedad()}</li>
+                            {/if}
+                        {/if}
+                        
+                        {if $tplProp->getSuperficieCubierta() gt 0}
+                            <li><strong>Superficie Cubierta: </strong>{$tplProp->getSuperficieCubierta()} M2</li>
+                        {/if}
+                    
+                        {if $tplProp->getSuperficieTotal() gt 0}
+                            <li><strong>Superficie Total: </strong>{$tplProp->getSuperficieTotal()} M2</li>
+                        {/if}
+                    
+                    </ul>
+                </div>
+            
+                <div class="centerPane">	    
+                    <h4>CARACTERISTICAS</h4>
+                        <ul class="details">                    
+                    	{if $tplProp->getItems()}
+                        	{foreach name=items item=item from=$tplProp->getItems()}
+                            	<li>{$item->getDescripcion()}</li>
+                        	{/foreach}
+                    	{else}
+                    		<li>No se Ingresaron Caracteristicas</li>
+                    	{/if}
+                        </ul>
+                </div>
+            
+                <div class="rightPane">
+                    <h4>MEDIDAS DE LOS AMBIENTES</h4>
+                        <ul class="details">
+                    	{if $tplProp->getAmbientes()}
+                        	{foreach name=rooms item=room from=$tplProp->getAmbientes()}
+                           	 	<li>{$room->getDescripcion()}: {$room->getAncho()} x {$room->getLargo()} metros</li>
+                        	{/foreach}
+                        {else}
+                        	<li>No se Detallaron los Ambientes</li>
+                    	{/if}
+                        </ul>                    
+                </div>
+                <br class="clearfix" />
+            </div><!-- Fin .middlePane -->                   
+                    	
+            {if $tplProp->getObservaciones() neq ''}  
+            <div class="divisorDotted"></div>                      
+			<div class="bottomPane">	
+        		<h4>OBSERVACIONES</h4>
+            		<p>{$tplProp->getObservaciones()|wordwrap}</p>
+			</div>            	            
+        	{/if}
+            
+            {if $tplCalendarFlag eq 1}
+            <div class="divisorDotted"></div>
+            <h4>DISPONIBILIDAD DE LA PROPIEDAD</h4>
+            <div class="calWrapper">
+            	<div id="calDisponibilidad"></div>
+                <div class="calNotes">
+                	<span class="ui-icon ui-icon-alert"></span>
+                    <strong><u>Nota:</u></strong> Si el d&iacute;a se encuentra inhabilitado, es porque no esta Disponible
+                </div>
+            </div>
+            {/if}
+           
+		</div><!-- End DIV #content -->
+        {else}
+        	{include file="../../includes/brokenDetalleTemplate.html"}
+        {/if}
+	</div><!-- End DIV #page -->
+</div><!-- End DIV #wrapper -->
+<div id="footer"><p>Copyright &copy; {$smarty.now|date_format:"%Y"} &bull; Todos los derechos Reservados &bull; Pinmo</p></div>
+<div id="modalWrapper" class="modalWrapper ui-widget ui-corner-all">
+	<div class="ui-widget-header modalTittle ui-corner-top">Consultar sobre la Propiedad Actual</div>
+	<div class="modalContent ui-widget-content">
+    <div class="ui-state-highlight ui-corner-all"> 
+        <p>
+        	<span class="ui-icon ui-icon-alert"></span> 
+        	<strong>Tenga en cuenta que NO hace falta que en su<br />
+            Mensaje haga referencia a La Propiedad.</strong>
+        </p>
+    </div>
+        <form id="frmConsulta" name="frmConsulta" method="POST" action="../../consulta.php?acc=pr">
+            <input type="hidden" name="txtProp" id="txtProp" value="{$tplProp->ubicacion->getCalle()} al {$tplProp->ubicacion->getNumero(1)} - {$tplProp->ubicacion->getNomLocalidad()}, {$tplProp->ubicacion->getNomProvincia()}" />
+            <input type="hidden" name="txtID" id="txtID" value="{$tplProp->getIdPropiedad()}" />
+            <input type="hidden" name="frmToken" id="frmToken" value="{$tplToken}" />
+            <div class="formAreaRow">
+                <div class="labelDiv labelArea"><label for="txtConsulta"><div class="req">*</div> Su Consulta </label></div>
+                <div class="fieldDiv"><textarea rows="4" id="txtConsulta" name="txtConsulta"></textarea></div>
+            </div>
+            <div class="formRow">
+                <div class="labelDiv"><label for="txtNombre"><div class="req">*</div> Su Nombre </label></div>
+                <div class="fieldDiv"><input type="text" id="txtNombre" name="txtNombre" maxlength="50" /></div>
+            </div>
+            <div class="formRow">
+                <div class="labelDiv"><label for="txtEmail"><div class="req">*</div> Su E-mail </label></div>
+                <div class="fieldDiv"><input type="text" id="txtEmail" name="txtEmail"  maxlength="50" /></div>
+            </div>
+            <div class="buttonPane">
+                <button type="submit" id="btnEnviarConsulta" class="buttonSmall">Enviar</button>
+                <button type="button" id="btnCerrarConsulta" class="buttonSmall">Salir</button>
+            </div>
+        </form>
+	</div>
+</div><!-- End DIV #modalWrapper --> 
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>:: Pinmo &copy; - Portal Reloaded ::</title>
+<style type="text/css" media="all">
+<!--
+@import url("css/common/portal.common.style.css");
+@import url("css/common/portal.contacto.style.css");
+-->
+</style>
+<link href="/css/common/portal.common.style.css" rel="stylesheet" type="text/css" />
+<link href="/css/common/portal.contacto.style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/JQuery/jquery.js?PID={$tplPid}"></script>
+<script type="text/javascript" src="js/JQuery/jquery.portal.js"></script>
+<script type="text/javascript" src="js/common/min/utils.js"></script>
+<script type="text/javascript" src="js/common/min/consulta.js"></script>
+</head>
+<body>
+<div id="textLoader" class="ui-corner-left">Cargando ...</div>
+<div id="mainLoader"><br />Cargando ...</div>
+<div id="overLay" class="blackOverlay"></div>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="index.php"></a></h1>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li><a href="index.php">Buscar</a></li>
+			<li class="current_page_item"><a href="consulta.php?acc=co">Contacto</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+    	<div class="locationInfo">
+        	<a href="index.php">Pinmo</a> <img src="css/images/portal/r_Arrow.png" /> Formulario de Contacto
+        </div>
+        <div class="clearfix"></div>
+		<div id="content" class="ui-widget">
+            <div>
+                <div class="ui-state-highlight ui-corner-all"> 
+                    <p>
+                        <span class="ui-icon ui-icon-alert"></span> 
+                        <strong>El Siguiente Mensaje NO es para NINGUNA INMOBILIARIA. Es para los Desarrolladores y Administradores del Portal Pinmo &copy;</strong>
+                    </p>
+                </div>
+                <form id="frmConsulta" name="frmConsulta" method="POST" action="consulta.php?acc=po">
+                    <input type="hidden" name="frmToken" id="frmToken" value="{$tplToken}" />
+                    <div class="formAreaRow">
+                        <div class="labelDiv labelArea"><label for="txtConsulta"><div class="req">*</div> Su Consulta </label></div>
+                        <div class="fieldDiv"><textarea rows="4" id="txtConsulta" name="txtConsulta"></textarea></div>
+                    </div>
+                    <div class="formRow">
+                        <div class="labelDiv"><label for="txtNombre"><div class="req">*</div> Su Nombre </label></div>
+                        <div class="fieldDiv"><input type="text" id="txtNombre" name="txtNombre" maxlength="50" /></div>
+                    </div>
+                    <div class="formRow">
+                        <div class="labelDiv"><label for="txtEmail"><div class="req">*</div> Su E-mail </label></div>
+                        <div class="fieldDiv"><input type="text" id="txtEmail" name="txtEmail"  maxlength="50" /></div>
+                    </div>
+                    <div class="buttonPane">
+                        <button type="submit" id="btnEnviarConsulta" class="buttonSmall">Enviar</button>
+                        <button type="button" id="btnSalirConsulta" class="buttonSmall">Salir</button>
+                    </div>
+                </form>
+            </div>
+		</div><!-- End DIV #content -->
+        <div class="clearfix"></div>
+	</div><!-- End DIV #page -->
+</div>
+<div id="footer"><p>Copyright &copy; {$smarty.now|date_format:"%Y"} &bull; Todos los derechos Reservados &bull; Pinmo</p></div>
+</body>
+</html>
+

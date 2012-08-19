@@ -1,0 +1,9 @@
+/pictures/imagenes/
+/pictures/thumbnails/
+/backend/includes/dompdf/
+/backend/includes/PHPMailer/
+/backend/includes/rad/
+/frontend/Home/views/templates_c/
+/frontend/portal/
+/smarty/*
+/backend/views/templates_c/

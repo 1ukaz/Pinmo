@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^detalles/(.+)/(.+)\.html detalle.php?idProp=$1

@@ -1,0 +1,35 @@
+<div id="app">
+    <h4 class="ui-widget-header"><span class="ui-icon ui-icon-plus"></span> Uploader</h4>
+    {if $tplIEFlag == 1}
+        <object 
+            type		= "application/x-java-applet;version=1.4.1"
+            classid		= "clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" 
+            id			= "rup"
+            width		= "95%" 
+            height		= "95%" 
+            align       = "middle">
+            <param name	= "archive" value="http://www.pinmo.com.ar/backend/includes/rad/dndplus.jar">;
+            <param name	= "code" value="com.radinks.dnd.DNDAppletPlus">
+            <param name	= "name" value="Rad Upload Plus">
+            <param name	= "MAYSCRIPT" value="yes">
+            <param name	= "scriptable" value="true">			
+            <param name = "props_file" value="http://www.pinmo.com.ar/backend/config/conf.rad.php">
+            <param name = "url" value = "http://www.pinmo.com.ar/backend/controllers/propiedadPict.php?PHPSESS={$tplSID}&acc=up&pid={$tplPid}">
+        </object>		
+    {else}
+        <applet
+            archive  	= "http://www.pinmo.com.ar/backend/includes/rad/dndplus.jar"
+            code     	= "com.radinks.dnd.DNDAppletPlus"
+            name     	= "Rad Upload Plus"
+            hspace   	= "0"
+            vspace   	= "0" 
+            MAYSCRIPT	= "yes"
+            width		= "95%" 
+            height		= "95%"
+            align   	= "middle" 
+            id			= "rup">
+            <param name="props_file" value="http://www.pinmo.com.ar/backend/config/conf.rad.php">
+            <param name = "url" value = "http://www.pinmo.com.ar/backend/controllers/propiedadPict.php?PHPSESS={$tplSID}&acc=up&pid={$tplPid}">
+        </applet>    
+    {/if}
+</div>

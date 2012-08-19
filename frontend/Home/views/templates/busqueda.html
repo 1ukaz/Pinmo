@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<head>
+<meta name="keywords" content="Pinmo, Portal Inmobiliario, Red Inmobiliaria, Propiedades, Rentals, Apartments, Alquiler, Venta, Temporario" />
+<meta name="description" content="PINMO Portal Inmobiliario" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>:: Pinmo &copy; - Portal Inmobiliario</title>
+<style type="text/css" media="all">
+<!--
+@import url("css/common/portal.common.style.css");
+@import url("css/common/portal.busqueda.style.css");
+-->
+</style>
+<link href="css/common/portal.common.style.css" rel="stylesheet" type="text/css" />
+<link href="css/common/portal.busqueda.style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="js/JQuery/jquery.js"></script>
+<script type="text/javascript" src="js/JQuery/jquery-ui-portal.js"></script>
+<script type="text/javascript" src="js/JQuery/jquery.portal.js"></script>
+<script type="text/javascript" src="js/common/min/utils.js?pags={$tplPages}"></script>
+<script type="text/javascript" src="js/common/min/maps.utils.js"></script>
+{literal}
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+	$(".accLink").hide();
+	$(".itm").tooltip({track:true, delay:250, showURL:false, fade:200});
+	$("#sidebar .subOpciones").each(function(){
+		$(this).find("ul").children("li:gt(2)").hide();
+	});
+	$("#content ul.items > li").each(function(){
+		$(this).hover(
+			function() { $(this).find(".accLink").show(); },
+			function() { $(this).find(".accLink").hide(); }		
+		);
+	});
+	$.getScript("js/common/min/busqueda.js");
+});
+//]]>
+</script>
+{/literal} 
+
+
+<!--G Analytics -->
+<script type="text/javascript" src="js/ga.js"></script> 
+</head>
+<body>
+<div id="textLoader" class="ui-corner-left">Cargando ...</div>
+<div id="mainLoader"><br />Cargando ...</div>
+<div id="mapWrapper" class="modalWrapper ui-corner-all"></div>
+<div id="overLay" class="blackOverlay"></div>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="index.php"></a></h1>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a href="index.php">Buscar</a></li>
+			<li><a href="consulta.php?acc=co">Contacto</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+    	<div class="locationInfo">
+        	<a href="index.php">Pinmo</a> <img src="css/images/portal/r_Arrow.png" /> Resultados de la Búsqueda
+        </div>
+		<div id="content">
+		  <div id="resultsList">
+            <h3>Resultados de su Búsqueda
+            	<div class="ord"><div>Ordenar Por:&nbsp;</div>
+            	<select id="selOrden">
+                	<option value="1" {if $tplOrden eq 1} selected {/if}>Destaque</option> 
+                    <option value="2" {if $tplOrden eq 2} selected {/if}>Mayor Precio</option> 
+                    <option value="3" {if $tplOrden eq 3} selected {/if}>Menor Precio</option> 
+                    <option value="4" {if $tplOrden eq 4} selected {/if}>Mas nuevos</option>
+                </select>
+                </div>
+            </h3>
+                {if count($tplSearchObject->getListado()) gt 0}
+                	{if $tplSearchObject->oPaginador->getTotalRows() gt 1}
+                		<div id="paginatorTop"></div>
+                	{/if}
+                <div id="itemsList">
+				<p>Para ver los resultados en el Mapa, haga click <a href="busqueda.php" class="lm" id="mapLink">Aqui</a></p>                
+                <ul class="items">
+                {section name=item loop=$tplSearchObject->getListado()}
+                <li id="res_{$smarty.section.item.index}">
+                    <div class="Box Gris">
+                        <div class="Detalle">
+                        <ul class="ui-helper-clearfix">
+                            <li class="Img">
+                            	{if $tplSearchObject->aListado[item]->getDaysFromAlta() lt 30}
+                            		<div class="newProp"></div>
+                                {/if}
+                                {if count($tplSearchObject->aListado[item]->getImagenes()) gt 0}
+                                	<div class="cantFotos"><span class="txtFotos">{$tplSearchObject->aListado[item]->getCantImagenes()} Fotos</span></div>                                
+                                    <a href="detalles/{$tplSearchObject->aListado[item]->getIdPropiedad()}/{$tplSearchObject->aListado[item]->getParsedUrlFriendlyString()}.html">
+                                        <img src="{$tplSearchObject->aListado[item]->aImagenes[0]->getThumbFullPath()}" class="listedThumb toolTip" title="Haga Click para Ver los Detalles de La Propiedad" />
+                                    </a>
+                                {else}
+                                    <img src="pictures/no-image.png" class="listedThumb" />
+                                {/if}
+                            </li>
+                            <li class="desc">
+                            	<strong>
+                            	<a href="detalles/{$tplSearchObject->aListado[item]->getIdPropiedad()}/{$tplSearchObject->aListado[item]->getParsedUrlFriendlyString()}.html">
+                                    {$tplSearchObject->aListado[item]->getTipoPropiedad()} en
+                                    {if count($tplSearchObject->aListado[item]->getPublicaciones()) gt 0}
+                                        {section name=publicacion loop=$tplSearchObject->aListado[item]->getPublicaciones()}
+                                            {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdTipoPublicacion() eq $tplSearchObject->busTipoPublicacion.value}
+                                                {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true} |
+                                            {else}
+                                                {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 7 && $tplSearchObject->busTipoPublicacion.value eq 0}
+                                                    {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getTipoPublicacion()|truncate:14:".":true} |
+                                                {/if}
+                                            {/if}
+                                        {/section}
+                                    {/if}
+                                    {if $tplSearchObject->aListado[item]->getCantAmbientes() gt 0}
+                                        {$tplSearchObject->aListado[item]->getCantAmbientes()} Ambientes |
+                                    {/if}
+                                    {$tplSearchObject->aListado[item]->ubicacion->getCalle()} al
+                                    {$tplSearchObject->aListado[item]->ubicacion->getNumero(1)}
+                                    {if is_numeric($tplSearchObject->aListado[item]->ubicacion->getPiso())}
+                                        {$tplSearchObject->aListado[item]->ubicacion->getPiso()}&deg; Piso
+                                    {else}
+                                        {$tplSearchObject->aListado[item]->ubicacion->getPiso()}
+                                    {/if}
+                                    | {$tplSearchObject->aListado[item]->ubicacion->getNomLocalidad()}
+                                </a>
+                                </strong>
+                                <div class="its"> 
+                                    {if $tplSearchObject->aListado[item]->getItems()}
+                                        <ul>
+                                        {foreach name=items item=item from=$tplSearchObject->aListado[item]->getItems()}
+                                        	{if $item->getIcono() neq ''}
+                                            	<li><img class="itm" src="css/images/items/{$item->getIcono()}" width="24" title="{$item->getDescripcion()}" /></li>
+                                            {/if}
+                                        {/foreach}
+                                        </ul>
+                                    {/if}
+                                </div>
+                            </li>
+                            <li class="precio">
+                                {if count($tplSearchObject->aListado[item]->getPublicaciones()) gt 0}
+                                    {section name=publicacion loop=$tplSearchObject->aListado[item]->getPublicaciones()}
+                                    {if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdTipoPublicacion() eq $tplSearchObject->busTipoPublicacion.value}             
+                                        {if is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto())}
+                                            {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMoneda()}               
+                                        {/if}
+                                        {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto()}<br />
+                                    {else}
+                                    	{if $tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getIdEstadoPublicacion() neq 7 && $tplSearchObject->busTipoPublicacion.value eq 0}
+                                            {if is_numeric($tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto())}
+                                                {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMoneda()}               
+                                            {/if}
+                                            {$tplSearchObject->aListado[item]->aPublicaciones[publicacion]->getMonto()}<br />
+                                        {/if}                                      
+                                    {/if}
+                                    {/section}
+                                {/if}
+                                <div class="inmob">{$tplSearchObject->aListado[item]->inmobiliaria->getNombre()}</div>
+                            </li>
+                        </ul>
+                        <div class="accLink" style="text-align:right; padding:0px 10px;">
+                            <a href="detalles/{$tplSearchObject->aListado[item]->getIdPropiedad()}/{$tplSearchObject->aListado[item]->getParsedUrlFriendlyString()}.html" class="moreInfo">
+                            	Ver Detalles
+                            </a>
+                        </div>
+                        </div>
+                     </div>
+                </li>
+                {/section}
+            	</ul>
+                </div><!-- End #itemsList -->
+                {if $tplSearchObject->oPaginador->getTotalRows() gt 1}
+                	<div id="paginatorBottom"></div>
+                {/if}                
+            	{else}
+                    <div class="ui-state-error ui-corner-all" style="margin-top:20px; margin-bottom:15px; padding:0 1.7em; font-size:110%;"> 
+                        <p style="margin:1.5em 0; line-height:normal;"><span class="ui-icon ui-icon-alert" style="float:left; margin-right:.3em;"></span> 
+                        <strong>Lo sentimos pero Parece que La Busqueda NO produjo Resultados para Mostrar</strong></p>
+                    </div>
+                {/if} 
+		  </div>
+          <!-- End #ResultList -->                    
+		</div>
+		<!-- End #content -->
+		<div id="sidebar">
+        	{if $tplSearchObject->filtrosAplicados gt 0}
+                <div class="FiltrosAplicados">
+                    <div class="CR Tl">&nbsp;</div>
+                    <div class="CR Tr">&nbsp;</div>
+                    <div class="CR Bl">&nbsp;</div>
+                    <div class="CR Br">&nbsp;</div>
+                    <div><div class="filtroTittle">Filtros Aplicados 
+                    	 <a href="busqueda.php" title="Haciendo Click, realiza una Busqueda sin Filtrar !!" class="itm">Eliminar<br />Filtros</a>
+                         </div>
+                    </div>
+                    {if $tplSearchObject->busTipoInmueble.value neq 0}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busTipoInmueble.display}</div>
+                            <a class="delFiltro" href="&sp.cboTipoPropiedad={$tplSearchObject->busTipoInmueble.value}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busTipoPublicacion.value neq 0}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busTipoPublicacion.display}</div>
+                            <a class="delFiltro" href="&sp.rdoTipoPublicacion={$tplSearchObject->busTipoPublicacion.value}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busProvincia.value neq 0}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busProvincia.display}</div>
+                            <a class="delFiltro" href="&sp.cboProvincia={$tplSearchObject->busProvincia.value}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busLocalidad.value neq 0}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busLocalidad.display}</div>
+                            <a class="delFiltro" href="&sp.cboLocalidad={$tplSearchObject->busLocalidad.value}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busPrecio.urlFlg neq ''}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busPrecio.display}</div>
+                            <a class="delFiltro" href="&sp.rdoPrecio={$tplSearchObject->busPrecio.urlFlg}{if $tplSearchObject->busPrecio.minLimit and $tplSearchObject->busPrecio.urlFlg == 'sfp_858'}&sp.txtPrecioDesde={$tplSearchObject->busPrecio.minLimit}{/if}{if $tplSearchObject->busPrecio.maxLimit and $tplSearchObject->busPrecio.urlFlg == 'sfp_858'}&sp.txtPrecioHasta={$tplSearchObject->busPrecio.maxLimit}{/if}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busAmbientes.value neq ''}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busAmbientes.display}</div>
+                            <a class="delFiltro" href="&sp.txtAmbientes={$tplSearchObject->busAmbientes.value}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busSuperficie.urlFlg neq ''}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busSuperficie.display}</div>
+                            <a class="delFiltro" href="&sp.txtSuperficieTotal={$tplSearchObject->busSuperficie.urlFlg}{if $tplSearchObject->busSuperficie.value and $tplSearchObject->busSuperficie.urlFlg == 'vga_243'}&sp.txtSupExacta={$tplSearchObject->busSuperficie.value}{/if}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}
+                    {if $tplSearchObject->busAntiguedad.urlFlg neq 0}
+                        <div class="tipo">
+                            <div>{$tplSearchObject->busAntiguedad.display}</div>                        
+                            <a class="delFiltro" href="&sp.txtAntiguedad={$tplSearchObject->busAntiguedad.urlFlg}" title="Eliminar Filtro"></a>
+                        </div>
+                    {/if}                
+                </div>
+                <div class="sombra230"></div>
+            {/if}
+            {if $tplSearchObject->filtrosAplicables gt 0}
+                <div class="FiltrosAplicar">
+                    <div class="filtroTittle">
+                        <div class="CR Tl"></div>
+                        <div class="CR Tr"></div>
+                        Filtros Aplicables
+                    </div>
+                    <div class="Content">
+                        <div class="CR Bl"></div>
+                        <div class="CR Br"></div>
+                        <div class="inner">
+                            <div class="CR Tl"></div>
+                            <div class="CR Tr"></div>
+                            <div class="CR Bl"></div>
+                            <div class="CR Br"></div>
+                            {if $tplSearchObject->busTipoInmueble.value eq 0}
+                                <div class="filtroModulo">
+                                    <div class="toogleButton">
+                                        <p>Tipo Inmueble</p>
+                                    </div>
+                                    <div class="subOpciones">
+                                        <ul>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=1&sp.strTipoPropiedad=Departamento">Departamento</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=2&sp.strTipoPropiedad=Casa">Casa</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=3&sp.strTipoPropiedad=PH">PH</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=3&sp.strTipoPropiedad=Loft">Loft</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=4&sp.strTipoPropiedad=Campo">Campo</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=5&sp.strTipoPropiedad=Local">Local</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=6&sp.strTipoPropiedad=Terreno">Terreno</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=7&sp.strTipoPropiedad=Quinta">Quinta</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=8&sp.strTipoPropiedad=Cochera">Cochera</a></li>
+                                            <li><a class="addFiltro" href="&sp.cboTipoPropiedad=9&sp.strTipoPropiedad=Oficina">Oficina</a></li>                                        
+                                        </ul>
+                                        <a class="subExpander" title="Ver Más Tipos de Propiedad" href="javascript:void(0)">Ver Mas</a>
+                                    </div>                                
+                                </div>
+                                <div class="Divisor"></div>
+                            {/if}
+                            {if $tplSearchObject->busTipoPublicacion.value eq 0}
+                                <div class="filtroModulo">
+                                    <div class="toogleButton">
+                                        <p>Operación</p>
+                                    </div>
+                                    <div class="subOpciones">
+                                        <ul>
+                                            <li><a class="addFiltro" href="&sp.rdoTipoPublicacion=1">Venta</a></li>
+                                            <li><a class="addFiltro" href="&sp.rdoTipoPublicacion=2">Alquiler</a></li>
+                                            <li><a class="addFiltro" href="&sp.rdoTipoPublicacion=3">Alquiler Temp.</a></li>
+                                        </ul>
+                                    </div>                                
+                                </div>
+                                <div class="Divisor"></div>
+                            {/if}
+                            {if $tplSearchObject->busPrecio.urlFlg eq ''}
+                                <div class="filtroModulo">
+                                    <div class="toogleButton">
+                                        <p>Precio</p>
+                                    </div>
+                                    <div class="subOpciones">
+                                        <ul style="margin-left:-7px;">
+                                            <li>De <input type="text" name="sp.txtPrecioDesde" id="sp.txtPrecioDesde" maxlength="9" />
+                                                <div style="padding:2px 5px 2px 5px; display:inline-block; position:relative; top:-3px;">&raquo;</div>
+                                                <input type="text" name="sp.txtPrecioHasta" id="sp.txtPrecioHasta" maxlength="9" />
+                                            </li>
+                                            <li style="padding-left:60px; margin-top:10px;">
+                                                <a class="sidebarButton" id="filterPrecio" href="&sp.rdoPrecio=sfp_858"><span>Buscar</span></a>
+                                            </li>                                    
+                                        </ul>
+                                    </div>                                
+                                </div>
+                                <div class="Divisor"></div>
+                            {/if}
+                            {if $tplSearchObject->busAmbientes.value eq ''}
+                                <div class="filtroModulo">
+                                    <div class="toogleButton">
+                                        <p>Cant. de Ambientes</p>
+                                    </div>
+                                    <div class="subOpciones">
+                                        <ul>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=1">1 Ambiente</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=2">2 Ambientes</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=3">3 Ambientes</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=4">4 Ambientes</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=5">5 Ambientes</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=6">6 Ambientes</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAmbientes=aca_101">Mas de 6</a></li>                                        
+                                        </ul>
+                                        <a class="subExpander" title="Ver Más Cant. de Ambientes" href="javascript:void(0)">Ver Mas</a>
+                                    </div>                                
+                                </div>
+                                <div class="Divisor"></div>
+                            {/if}
+                            {if $tplSearchObject->busSuperficie.urlFlg eq ''}
+                                <div class="filtroModulo">
+                                    <div class="toogleButton">
+                                        <p>Superficie</p>
+                                    </div>
+                                    <div class="subOpciones">
+                                        <ul>
+                                            <li><a class="addFiltro" href="&sp.txtSuperficieTotal=1">Hasta 50 M2</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtSuperficieTotal=2">50 a 100 M2</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtSuperficieTotal=3">100 a 300 M2</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtSuperficieTotal=4">Mas de 300 M2</a></li>
+                                            <li>Exactamente de <div style="padding:2px 5px 2px 5px; display:inline-block; position:relative; top:-1px;">&raquo;</div> 
+                                                <input type="text" name="sp.txtSupExacta" id="sp.txtSupExacta" maxlength="9" />
+                                            </li>
+                                            <li style="padding-left:50px; margin:10px 0px;">
+                                                <a class="sidebarButton" id="filterSuperficie" href="&sp.txtSuperficieTotal=vga_243"><span>Buscar</span></a>
+                                            </li>
+                                        </ul>
+                                        <a class="subExpander" title="Ver Más Cant. de Ambientes" href="javascript:void(0)">Ver Mas</a>
+                                    </div>                                
+                                </div>
+                                <div class="Divisor"></div>
+                            {/if}
+                            {if $tplSearchObject->busAntiguedad.urlFlg eq 0}
+                                <div class="filtroModulo">
+                                    <div class="toogleButton">
+                                        <p>Antiguedad</p>
+                                    </div>
+                                    <div class="subOpciones">
+                                        <ul>
+                                            <li><a class="addFiltro" href="&sp.txtAntiguedad=1">A Estrenar</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAntiguedad=2">Hasta 10 Años</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAntiguedad=3">De 11 a 25 Años</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAntiguedad=4">De 26 a 40 Años</a></li>
+                                            <li><a class="addFiltro" href="&sp.txtAntiguedad=5">Mas de 40 Años</a></li>
+                                        </ul>
+                                        <a class="subExpander" title="Ver Más Antiguedades" href="javascript:void(0)">Ver Mas</a>
+                                    </div>                                
+                                </div>
+                                <div class="Divisor"></div>                     
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+                <div class="sombra230"></div>
+            {/if}
+		</div><!-- end #sidebar -->
+		<div class="clearfull">&nbsp;</div>
+	</div><!-- end #page -->
+</div>
+<div id="footer"><p>Copyright &copy; {$smarty.now|date_format:"%Y"} &bull; Todos los derechos Reservados &bull; Pinmo</p></div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+<meta name="keywords" content="Pinmo, Portal Inmobiliario, Red Inmobiliaria, Propiedades, Rentals, Apartments, Alquiler, Venta, Temporario" />
+<meta name="description" content="PINMO Portal Inmobiliario" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>:: Pinmo &copy; - Portal Inmobiliario</title>
+<style type="text/css" media="all">
+<!--
+@import url("css/common/portal.common.style.css");
+@import url("css/common/portal.index.style.css");
+-->
+</style>
+<link href="css/common/portal.common.style.css" rel="stylesheet" type="text/css" />
+<link href="css/common/portal.index.style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/JQuery/jquery.js"></script>
+<script type="text/javascript" src="js/JQuery/jquery.portal.js"></script>
+<script type="text/javascript" src="js/common/min/utils.js?oop=true"></script>
+<script type="text/javascript" src="js/common/min/portal.js"></script>
+
+<!--G Analytics -->
+<script type="text/javascript" src="js/ga.js"></script>
+
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="index.php"></a></h1>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a href="index.php">Buscar</a></li>
+			<li><a href="consulta.php?acc=co">Contacto</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="page">
+		<div id="content">
+			<div id="search" class="ui-corner-all">
+              <form id="frmBusqueda" method="GET" action="busqueda.php">
+              	<input type="hidden" name="sp.strTipoPropiedad" id="sp.strTipoPropiedad" />
+                <input type="hidden" name="sp.strProvincia" id="sp.strProvincia" />
+                <input type="hidden" name="sp.strLocalidad" id="sp.strLocalidad" />
+                <input type="hidden" name="acc" id="acc" value="init" />
+        		<ul class="searchFields">
+                     <li>
+                        <label for="sp.cboTipoPropiedad">Tipo de Propiedad:</label>
+                        <select class="std ignore" id="sp.cboTipoPropiedad" name="sp.cboTipoPropiedad" tabindex="0">
+                        	{html_options values=$tplCboTisProp.values output=$tplCboTisProp.output selected=1}
+                        </select>
+                     </li>
+                     <li>
+                     	<label for="sp.rdoTipoPublicacion">Tipo de Operación:</label>
+                        <input type="radio" name="sp.rdoTipoPublicacion" id="sp.rdoTipoPublicacion" value="1" checked />Venta | 
+                        <input type="radio" name="sp.rdoTipoPublicacion" id="sp.rdoTipoPublicacion" value="2" />Alquiler | 
+                        <input type="radio" name="sp.rdoTipoPublicacion" id="sp.rdoTipoPublicacion" value="3" />Alquiler Temp.
+                     </li>
+                     <li>
+                        <label for="sp.cboProvincia">Provincia:</label>
+                        <select class="std ignore" id="sp.cboProvincia" name="sp.cboProvincia" tabindex="3">
+                        	{html_options values=$tplCboProvs.values output=$tplCboProvs.output selected=1}
+                        </select>
+                     </li>                                                  
+                     <li>
+                        <label for="sp.cboLocalidad">Localidad:</label>
+                        <select class="std ignore" id="sp.cboLocalidad" name="sp.cboLocalidad" tabindex="4">
+                        	{html_options values=$tplCboLocs.values output=$tplCboLocs.output selected=0}
+                        </select>
+                     </li>
+                     <li>
+                     	<label for="sp.rdoPrecio" class="tall">Rango de Precio:</label>
+                        <div style="float:left;">
+                            <input type="radio" name="sp.rdoPrecio" value="1" checked />Hasta 50.000 U$S<br /> 
+                            <input type="radio" name="sp.rdoPrecio" value="2" />De 50.000 a 100.000 U$S<br /> 
+                            <input type="radio" name="sp.rdoPrecio" value="3" />De 100.000 a 150.000 U$S<br />
+                            <input type="radio" name="sp.rdoPrecio" value="4" />Mas de 150.000 U$S            
+                        </div>
+                     </li>
+        		</ul>
+                {if count($tplVistas) gt 0}
+                <ul id="lasVistas">
+                  {foreach name=vistas item=aProp from=$tplVistas}
+                  <li>
+                  	<a href="detalles/{$aProp->getIdPropiedad()}/{$aProp->getParsedUrlFriendlyString()}.html" title="Click para Ver Detalles">
+                    	<div class="theImg">
+                        	<div class="outerFrame">
+                            	<div class="innerframe">
+                                    {if count($aProp->getImagenes()) gt 0}
+                                     	<img src="{$aProp->aImagenes[0]->getImgFullPath()}" height="185" alt="" />
+                                    {else}
+                                        <img src="pictures/no-image.png" height="185" alt="" />
+                                    {/if}
+                            	</div>
+                            </div>
+                        </div>
+                        <div class="infoText ui-corner-all">
+                            <h4>{$aProp->getTipoPropiedad()} de {if $aProp->getCantAmbientes() gt 1} {$aProp->getCantAmbientes()} Ambientes {else} 1 Ambiente {/if}</h4>
+                            {if count($aProp->getPublicaciones()) gt 0}
+                                {if is_numeric($aProp->aPublicaciones[0]->getMonto()) && $aProp->aPublicaciones[0]->getMonto() > 0}
+                                    {assign var = tplPrecio value = $aProp->aPublicaciones[0]->getMonto()}
+                                    <h5>{$aProp->aPublicaciones[0]->getMoneda()}&nbsp;{$aProp->aPublicaciones[0]->getMonto()}</h5>
+                                {else}
+                                    <h5>{$aProp->aPublicaciones[0]->getMonto()}</h5>
+                                {/if}
+                                {assign var = tplOpe value = $aProp->aPublicaciones[0]->getTipoPublicacion()|truncate:14:".":true}
+                                <span class="ui-corner-all">{$aProp->aPublicaciones[0]->getTipoPublicacion()|truncate:14:".":true}</span>
+                            {/if}
+                            <p>
+                                {$aProp->getTipoPropiedad()} en {$tplOpe} 
+                                {if $aProp->getCantAmbientes() gt 1} {$aProp->getCantAmbientes()} Ambientes {else} 1 Ambiente {/if} ...
+                                <strong>{$aProp->ubicacion->getNomLocalidad()}</strong>
+                            </p>
+                        </div>
+                    </a>
+                  </li>
+                  {/foreach}
+              </ul>	
+              {/if}			                
+        	  <p align="left" style="margin:0px; padding:20px 0px 5px 150px; clear:left;">
+              	<button type="submit" id="search-submit">Buscar</button>
+              </p>
+			</form>
+		  </div><!-- End DIV #search -->
+          {if count($tplDestacadas) gt 0}
+          <div class="divisorDotted"></div>
+          <div class="lasDestacadas">
+              <h3>Propiedades Destacadas</h3>
+              <div class="desItems">
+                  <!--<a style="visibility: hidden;" class="BtnLeft" title="Anterior" href="#"></a>-->
+                  {foreach name=destacadas item=aProp from=$tplDestacadas}
+                  <div class="desItem">
+                      <div class="desBox">
+                          <div class="CR Tr"></div>
+                          <div class="CR Tl"></div>
+                          <div class="CR Br"></div>
+                          <div class="CR Bl"></div>
+                          {if $aProp->getDaysFromAlta() lt 30}
+                          	<div class="FdNew"></div>
+                          {/if}
+                          <a title="Click para ver Detalles" href="detalles/{$aProp->getIdPropiedad()}/{$aProp->getParsedUrlFriendlyString()}.html">
+                              <h4>{$aProp->getTipoPropiedad()} | {if $aProp->getCantAmbientes() gt 1} {$aProp->getCantAmbientes()} Ambientes {else} 1 Ambiente {/if}</h4>
+                          </a>
+                          <div class="infoBox">
+                              <div class="desThumb">
+                                  {if count($aProp->getImagenes()) gt 0}
+                                      <a href="detalles/{$aProp->getIdPropiedad()}/{$aProp->getParsedUrlFriendlyString()}.html" title="Click para Ver Detalles">
+                                          <img src="{$aProp->aImagenes[0]->getThumbFullPath()}" width="88" height="66" alt="" />
+                                  {else}
+                                          <img src="pictures/no-image.png" width="88" height="66" alt="" />
+                                      </a>
+                                  {/if}
+                              </div>
+                              <a title="Click para ver detalles" href="detalles/{$aProp->getIdPropiedad()}/{$aProp->getParsedUrlFriendlyString()}.html">
+                                  <div style="cursor:pointer;" class="infoText">
+                                      {if count($aProp->getPublicaciones()) gt 0}
+                                          {if is_numeric($aProp->aPublicaciones[0]->getMonto()) && $aProp->aPublicaciones[0]->getMonto() > 0}
+                                              {assign var = tplPrecio value = $aProp->aPublicaciones[0]->getMonto()}
+                                              <h5>{$aProp->aPublicaciones[0]->getMoneda()}&nbsp;{$aProp->aPublicaciones[0]->getMonto()}</h5>
+                                          {else}
+                                              <h5>{$aProp->aPublicaciones[0]->getMonto()}</h5>
+                                          {/if}
+                                          {assign var = tplOpe value = $aProp->aPublicaciones[0]->getTipoPublicacion()|truncate:14:".":true}
+                                          <span>{$aProp->aPublicaciones[0]->getTipoPublicacion()|truncate:14:".":true}</span>
+                                      {/if}
+                                      <p>
+                                          {$aProp->getTipoPropiedad()} en {$tplOpe} 
+                                          {if $aProp->getCantAmbientes() gt 1} {$aProp->getCantAmbientes()} Ambientes {else} 1 Ambiente {/if} ...
+                                          <strong>{$aProp->ubicacion->getNomLocalidad()}</strong>
+                                      </p>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="BoxFt"></div>
+                  </div>
+                  {/foreach}
+                  <!--<a style="visibility: hidden;" class="BtnRight" title="Siguiente" href="#"></a>-->
+              </div>
+              <br class="clearfix" />
+          </div><!-- End DIV #lasDestacadas -->
+          {/if}
+		</div><!-- End DIV #content -->
+	</div><!-- End DIV #page -->
+</div>
+<div id="footer"><p>Copyright &copy; {$smarty.now|date_format:"%Y"} &bull; Todos los derechos Reservados &bull; Pinmo</p></div><!-- End DIV #footer -->
+</body>
+</html>

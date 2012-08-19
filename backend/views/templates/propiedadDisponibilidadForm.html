@@ -1,0 +1,41 @@
+<script type="text/javascript" src="../../js/common/min/formDisponibilidad.js"></script>
+<fieldset><legend>Agregar/Quitar Reservas</legend>
+ <div class="innerContainerDiv" style="min-height:460px;">
+  <form id="frmDisponibilidad" method="POST" action="{$tplAction}">
+    <table id="dispTable" border="0" cellpadding="7" cellspacing="0" align="center">
+        <thead>
+            <tr>
+                <th>Desde</th>
+                <th>Hasta</th>
+                <th>Notas</th>
+                <th>Acci&oacute;n</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr>
+            	<td>
+					<input type="text" id="aReservaDesde" name="aReservaDesde" readonly="readonly" size="10" />                
+                </td>
+                <td>
+                	<input type="text" name="aReservaHasta" id="aReservaHasta" readonly="readonly" size="10" />
+                </td>
+                <td>
+                	<input type="text" name="aReservaNotas" id="aReservaNotas" size="80" />
+                </td>
+                <td>
+                    <a href="javascript:void(0);" id="btnAddReserva" class="theButton ui-state-default ui-corner-all">
+                    	<span class="ui-icon ui-icon-plus"></span>Agregar
+                    </a>
+                </td>
+            </tr>
+		</tbody>
+    </table>
+  </form>
+  <div style="float:left; padding:25px 0px 10px 90px;">
+    <div style="float:left; width:100%; font-size:1em; border:1px solid #EEE;">
+        <div style="position:relative; top:-8px; left:10px; float:left; background-color:#FFF; padding:0px 5px; font-style:italic; color:#999999;">Reservas Guardadas</div>
+        <div id="reservasGuardadas" style="min-height:50px; padding:10px 0px; float:left; width:100%;"></div>
+    </div>
+  </div>
+ </div>
+</fieldset>

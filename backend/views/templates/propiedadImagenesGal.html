@@ -1,0 +1,31 @@
+<body>
+{literal}
+<script type="text/javascript">
+	SexyLightbox.refresh();
+</script>
+{/literal}
+<script type="text/javascript" src="../../js/common/min/formImagenesGal.js"></script>
+<ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
+<h4 class="ui-widget-header"><span class="ui-icon ui-icon-image"></span> Galeria de Imagenes (Hasta 18 por Propiedad)</h4>
+{if $tplProp->getImagenes()}
+    {foreach name=images item=image from=$tplProp->getImagenes()}
+    	{if !$image->getMarca()}
+            <li id="img_{$smarty.foreach.images.index}" class="imgContainer ui-widget-content ui-corner-tr">
+                <h5 class="ui-widget-header">
+                    {if $image->getDescripcion() neq ""}
+                        {$image->getDescripcion()|truncate:12:"...":true} <span class="ui-icon ui-icon-check"></span>
+                    {else}
+                        Imagen {$smarty.foreach.images.index+1} 
+                    {/if}
+                </h5>
+                
+                <img id="thb_{$image->getIdImagen()}" title="{$image->getDescripcion()}" alt="{$image->getDescripcion()}" src="{$image->getThumbFullPath()}" />
+                <a href="{$image->getImgFullPath()}" rel="lb[p_{$tplProp->getIdPropiedad()}]" title="Vista Maximizada {if $image->getDescripcion()}- {$image->getDescripcion()}{/if}" class="ui-icon ui-icon-zoomin toolTip">Zoom</a>
+                <a href="./propiedadPict.php?acc=ds&po={$smarty.foreach.images.index}&ide={$image->getIdDescripcion()}&sde={$image->getDescripcion()}" title="Asignar Descripcion" class="ui-icon ui-icon-newwin toolTip">Descripcion</a>
+                <a href="./propiedadPict.php?acc=de&po={$smarty.foreach.images.index}" title="Eliminar Esta Imagen" class="ui-icon ui-icon-trash toolTip">Borrar</a>
+            </li>
+        {/if}
+    {/foreach}
+{/if} 
+</ul>
+</body>

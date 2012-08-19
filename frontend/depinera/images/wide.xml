@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<flash_parameters copyright="socusoftFSMTheme">
+    <preferences>
+        <global>
+            <basic_property movieWidth="970" movieHeight="400" startAutoPlay="true" backgroundColor="0x999999" continuum="true" html_title="Title" loadStyle="Bar" socusoftMenu="false" hideAdobeMenu="false" photoDynamicShow="true" enableURL="true" transitionArray=""/>
+            <title_property photoTitle="false" photoTitleX="5" photoTitleY="25" photoTitleSize="20" photoTitleFont="Verdana" photoTitleColor="0xffffff"/>
+            <music_property path="" stream="true" loop="true"/>
+            <photo_property topPadding="0" bottomPadding="0" leftPadding="0" rightPadding="0"/>
+            <properties enable="true" backgroundColor="0xffffff" backgroundAlpha="30" cssText="a:link{text-decoration: underline;} a:hover{color:#ff0000; text-decoration: none;} a:active{color:#0000ff;text-decoration: none;} .blue {color:#0000ff; font-size:15px; font-style:italic; text-decoration: underline;} .body{color:#ff5500;font-size:20px;}" align="top"/>
+        </global>
+        <control>
+            <basic_property showControl="false" showControlX="-30" showControlY="460" showPreviousButton="res/previous01.gif" showPreviousButtonX="50" showStopButton="res/stop01.gif" showStopButtonX="97" showPlayButton="res/play01.gif" showPlayButtonX="97" showNextButton="res/next01.gif" showNextButtonX="124" showSoundButtonX="182"/>
+        </control>
+    </preferences>
+    <album>
+        <slide jpegURL="thumbs/t_0001.jpg" d_URL="slides/p_0001.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0002.jpg" d_URL="slides/p_0002.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0003.jpg" d_URL="slides/p_0003.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0004.jpg" d_URL="slides/p_0004.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0005.jpg" d_URL="slides/p_0005.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0006.jpg" d_URL="slides/p_0006.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0007.jpg" d_URL="slides/p_0007.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0008.jpg" d_URL="slides/p_0008.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0009.jpg" d_URL="slides/p_0009.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0010.jpg" d_URL="slides/p_0010.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0011.jpg" d_URL="slides/p_0011.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0012.jpg" d_URL="slides/p_0012.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+        <slide jpegURL="thumbs/t_0013.jpg" d_URL="slides/p_0013.jpg" transition="29" panzoom="1" URLTarget="0" phototime="2" url="" title="" width="900" height="400"/>
+    </album>
+</flash_parameters>

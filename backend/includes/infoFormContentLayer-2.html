@@ -1,0 +1,52 @@
+<fieldset><legend>Datos Espec&iacute;ficos del Inmueble</legend>
+  <div class="innerContainerDiv">
+		<ul style="padding:35px 20px 0px;">
+        	<!--
+         	<li>
+            <label for="cboEmprendimiento_ABM">Emprendimiento Asociado:</label>
+                <select class="std" id="cboEmprendimiento_ABM" name="cboEmprendimiento_ABM" tabindex="23" >
+                    {*html_options values=$tplCboEmprABM.values output=$tplCboEmprABM.output selected=$tplProp->getEmprendimientoAsociado()*}
+                </select>
+         	</li>
+			-->
+             <li>
+                <label class="large" for="txtAmb_ABM">Ambientes:</label>
+                <input name="txtAmb_ABM" id="txtAmb_ABM" type="text" value="{$tplProp->getCantAmbientes(1)}" class="std dec" tabindex="23" />
+             </li>
+             <li>
+                <label class="large" for="txtSupTotal_ABM">Superficie Total:</label>
+                <input name="txtSupTotal_ABM" id="txtSupTotal_ABM" type="text" value="{$tplProp->getSuperficieTotal()}" class="std dec" tabindex="24" />
+             </li>
+             <li>
+                <label class="large" for="txtSupCub_ABM">Superficie Cubierta:</label>
+                <input name="txtSupCub_ABM" id="txtSupCub_ABM" type="text" value="{$tplProp->getSuperficieCubierta()}" class="std dec" tabindex="25" />
+             </li>
+             <li>
+                <label class="large" for="txtSupSemiCub_ABM">Superficie SemiCubierta:</label>
+                <input name="txtSupSemiCub_ABM" id="txtSupSemiCub_ABM" type="text" value="{$tplProp->getSuperficieSemiCubierta()}" tabindex="26" class="std dec" />
+             </li>
+             <li>
+                <label class="large" for="txtSupDesCub">Superficie Descubierta:</label>
+                <input name="txtSupDesCub_ABM" id="txtSupDesCub_ABM" type="text" value="{$tplProp->getSuperficieDesCubierta()}" class="std dec" tabindex="27" />
+             </li>
+             <li>
+                <label class="large" for="txtAntiguedad_ABM">Antiguedad:</label>			
+                <input name="txtAntiguedad_ABM" id="txtAntiguedad_ABM"  type="text" value="{$tplProp->getAntiguedad(1)}" class="std ent" tabindex="28" />
+             </li>
+             <li>
+                <label class="large" for="txtExpensas_ABM">Expensas:</label>			
+                <input id="txtExpensas_ABM" name="txtExpensas_ABM" type="text" class="std dec" value="{$tplProp->getExpensas()}" tabindex="29" />
+             </li>        
+             <li>
+                <label class="large" for="txtExpExtra_ABM">Expensas Extraordinarias:</label>			
+                <input id="txtExpExtra_ABM" name="txtExpExtra_ABM" type="text" class="std dec" value="{$tplProp->getExpensasExtraordinarias()}"  tabindex="30" />
+             </li>        
+        </ul>
+        <div style="float:left; padding-left:15px;">
+          	<div style="text-align:center; padding:0px 0px 10px 0px;">Observaciones:</div>
+          	<div>
+            	<textarea name="txtObservaciones_ABM" id="txtObservaciones_ABM" class="ckeditor" tabindex="31" >{$tplProp->getObservaciones()}</textarea>
+        	</div>
+        </div>
+  </div>                    
+</fieldset>

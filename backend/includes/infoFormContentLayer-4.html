@@ -1,0 +1,24 @@
+<fieldset><legend>Caracter&iacute;sticas Generales del Inmueble</legend>
+  <div class="innerContainerDiv">
+		{assign var = $tplAgrupamientoDesc value = ''}
+
+        {foreach name=items item=item from=$tplArrayItems}
+        	{if $tplAgrupamientoDesc neq $item->getAgrupamiento()}
+            	{assign var = tplAgrupamientoDesc value = $item->getAgrupamiento()}
+                <div class="itemTittle"><p>{$item->getAgrupamiento()}</p></div>
+            {/if}
+        
+            <div class="itemContainer">
+                {if $item->getAgrupamientoControl() eq "checkbox"}
+                    <label class="auto" for="chkCaracteristica_ABM[{$smarty.foreach.items.index}]">
+                    <input type="checkbox" name="chkCaracteristica_ABM[{$smarty.foreach.items.index}]" value="{$item->getIdItem()}" class="check" {if $item->getEstado()} checked="checked" {/if} />
+                	{$item->getDescripcion()}</label>
+                {else}
+                    <label class="auto" for="rdoCaracteristica_ABM[{$item->getAgrupamiento()}]">
+                    <input type="radio" name="rdoCaracteristica_ABM[{$item->getAgrupamiento()}]" value="{$item->getIdItem()}" class="check" {if $item->getEstado()} checked {/if} />
+                	{$item->getDescripcion()}</label>
+                {/if}
+            </div>
+		{/foreach}
+  </div>
+</fieldset>
